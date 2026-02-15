@@ -2,163 +2,997 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI Monitoring - PRIMA+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Continuous Improvement - With Draft Feature</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; flex: 1; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                padding: 20px;
+            }
+        }
         
         /* Header */
-        .header { background: #1e3a8a; color: white; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        .badge { background: #fbbf24; color: #1e3a8a; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        .header {
+            background: #1976d2;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 15px;
+        }
         
-        /* Manual Book */
-        .manual { background: white; padding: 20px; border-radius: 0 0 10px 10px; margin-bottom: 20px; }
-        .manual h3 { color: #1e3a8a; margin-bottom: 15px; }
-        .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        @media (max-width: 768px) { .role-grid { grid-template-columns: 1fr; } }
-        .role-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
-        .role-header { padding: 12px; color: white; font-weight: bold; }
-        .staff { background: #16a34a; }
-        .manager { background: #ea580c; }
-        .director { background: #1e3a8a; }
-        .role-body { padding: 15px; background: #f9fafb; }
-        .feature { padding: 5px 0; display: flex; gap: 8px; font-size: 14px; }
-        .check { color: #16a34a; }
-        .uncheck { color: #dc2626; }
+        @media (min-width: 480px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+                padding: 20px;
+            }
+        }
         
-        /* Login */
-        .login-box { max-width: 400px; margin: 30px auto; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .login-header { background: #f3f4f6; padding: 20px; text-align: center; border-bottom: 1px solid #ddd; }
-        .login-body { padding: 25px; }
-        .info { background: #dbeafe; border-left: 4px solid #1e3a8a; padding: 12px; margin-bottom: 20px; font-size: 14px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-        .form-control { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 5px; }
-        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .btn-primary { background: #1e3a8a; color: white; width: 100%; }
-        .btn-primary:hover { background: #1e3a8a; opacity: 0.9; }
-        .btn-success { background: #16a34a; color: white; }
-        .btn-danger { background: #dc2626; color: white; }
-        .btn-small { padding: 5px 10px; font-size: 12px; }
+        .header h1 {
+            font-size: 1.2rem;
+        }
         
-        .role-login { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
-        .role-btn { padding: 8px 15px; border: 1px solid #ddd; border-radius: 20px; background: white; cursor: pointer; }
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .demo-badge {
+            background: #ffc107;
+            color: #1976d2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        
+        /* Login Box */
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+        
+        .login-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .login-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+        }
+        
+        .login-header h2 {
+            font-size: 1.3rem;
+            color: #333;
+        }
+        
+        .login-body {
+            padding: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .login-body {
+                padding: 30px;
+            }
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #0d47a1;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .form-group {
+                margin-bottom: 20px;
+            }
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .form-group label .required {
+            color: #d32f2f;
+            margin-left: 4px;
+        }
+        
+        .form-group label .optional {
+            color: #757575;
+            margin-left: 4px;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        /* Money Input */
+        .money-input {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .money-input .prefix {
+            position: absolute;
+            left: 12px;
+            color: #666;
+            font-weight: 500;
+            z-index: 1;
+            font-size: 0.9rem;
+        }
+        
+        .money-input input {
+            padding-left: 40px;
+            width: 100%;
+            text-align: right;
+            font-weight: 500;
+        }
+        
+        .money-hint {
+            color: #999;
+            font-size: 0.7rem;
+            margin-top: 4px;
+        }
+        
+        /* File Upload */
+        .upload-container {
+            border: 2px dashed #ccc;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+            background: #fafafa;
+        }
+        
+        @media (min-width: 768px) {
+            .upload-container {
+                padding: 20px;
+            }
+        }
+        
+        .upload-container:hover {
+            border-color: #1976d2;
+            background: #e3f2fd;
+        }
+        
+        .upload-container .camera-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .upload-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .upload-option-btn {
+            flex: 1;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .upload-option-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 640px) {
+            .preview-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+        
+        .preview-item {
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        @media (min-width: 640px) {
+            .preview-item {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+        
+        .preview-item .preview-label {
+            background: #f5f5f5;
+            padding: 8px;
+            font-weight: 500;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .photo-actions {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .photo-action-btn {
+            background: none;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            border-radius: 4px;
+        }
+        
+        .photo-action-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .remove-image {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-primary {
+            background: #1976d2;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1565c0;
+        }
+        
+        .btn-success {
+            background: #2e7d32;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1b5e20;
+        }
+        
+        .btn-warning {
+            background: #ed6c02;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #b85c00;
+        }
+        
+        .btn-danger {
+            background: #d32f2f;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+        
+        .btn-secondary {
+            background: #757575;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #616161;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1976d2;
+            color: #1976d2;
+        }
+        
+        .btn-outline:hover {
+            background: #e3f2fd;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+        
+        .role-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .role-btn {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 80px;
+        }
         
         /* Dashboard */
-        .dashboard { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .user-info { background: #f9fafb; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        .user-detail { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .user-name { font-size: 18px; font-weight: bold; }
-        .user-role { padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-        .role-staff { background: #dcfce7; color: #16a34a; }
-        .role-manager { background: #ffedd5; color: #ea580c; }
-        .role-director { background: #dbeafe; color: #1e3a8a; }
+        .dashboard {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
         
-        /* Stats */
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
-        @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-        .stat-card { background: #f9fafb; padding: 15px; border-radius: 8px; text-align: center; }
-        .stat-value { font-size: 24px; font-weight: bold; color: #1e3a8a; }
+        @media (min-width: 768px) {
+            .dashboard {
+                padding: 25px;
+            }
+        }
+        
+        .user-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        @media (min-width: 640px) {
+            .user-info {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .user-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        @media (min-width: 640px) {
+            .user-detail {
+                flex-direction: row;
+                align-items: center;
+                width: auto;
+            }
+        }
+        
+        .user-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .user-role {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+            align-self: flex-start;
+        }
+        
+        /* Draft Alert */
+        .draft-alert {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        @media (min-width: 640px) {
+            .draft-alert {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .draft-alert p {
+            color: #856404;
+            font-size: 0.9rem;
+        }
+        
+        .draft-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        /* Create Form */
+        .create-form {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .create-form {
+                padding: 25px;
+            }
+        }
+        
+        .create-form h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .form-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 640px) {
+            .form-actions {
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+        }
+        
+        /* Form Sections */
+        .form-section {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-section h4 {
+            color: #1976d2;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .section-status {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: #e0e0e0;
+            color: #666;
+            margin-left: 8px;
+        }
+        
+        .section-status.completed {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+        
+        /* Drafts List */
+        .drafts-list {
+            margin-bottom: 20px;
+        }
+        
+        .draft-item {
+            background: #fff8e1;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        @media (min-width: 640px) {
+            .draft-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .draft-info h5 {
+            font-size: 0.95rem;
+            color: #856404;
+            margin-bottom: 4px;
+        }
+        
+        .draft-info p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .draft-item-actions {
+            display: flex;
+            gap: 6px;
+        }
+        
+        /* Photo Gallery */
+        .photo-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        @media (min-width: 640px) {
+            .photo-gallery {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+        
+        .photo-item {
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 640px) {
+            .photo-item {
+                flex: 1;
+                min-width: 180px;
+            }
+        }
+        
+        .photo-item .photo-label {
+            background: #f5f5f5;
+            padding: 6px;
+            font-weight: 500;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.75rem;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
         
         /* Tabs */
-        .tabs { display: flex; gap: 5px; border-bottom: 2px solid #ddd; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab { padding: 10px 20px; border: none; background: none; cursor: pointer; }
-        .tab.active { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; margin-bottom: -2px; }
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 640px) {
+            .tabs {
+                flex-direction: row;
+                border-bottom: 2px solid #e0e0e0;
+            }
+        }
+        
+        .tab {
+            padding: 10px;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #666;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        @media (min-width: 640px) {
+            .tab {
+                padding: 12px 20px;
+                background: none;
+                border-radius: 0;
+            }
+            
+            .tab.active {
+                color: #1976d2;
+                border-bottom: 2px solid #1976d2;
+                margin-bottom: -2px;
+            }
+        }
+        
+        .tab.active {
+            background: #1976d2;
+            color: white;
+        }
+        
+        @media (min-width: 640px) {
+            .tab.active {
+                background: none;
+                color: #1976d2;
+            }
+        }
         
         /* Cards */
-        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
-        .card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
-        .card-title { font-weight: bold; }
-        .badge { padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; }
-        .badge-pending { background: #ffedd5; color: #ea580c; }
-        .badge-approved { background: #dcfce7; color: #16a34a; }
-        .card-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 10px 0; font-size: 13px; }
-        .card-actions { display: flex; gap: 10px; margin-top: 10px; }
+        .improvement-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
         
-        /* Footer */
-        .footer { background: #0f172a; color: white; text-align: center; padding: 20px; margin-top: 30px; border-radius: 10px 10px 0 0; }
-        .footer-logo { font-size: 20px; font-weight: bold; color: #fbbf24; margin-bottom: 5px; }
-        .footer-copyright { font-size: 13px; opacity: 0.9; }
-        .footer-tagline { font-size: 12px; opacity: 0.7; margin-top: 5px; }
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
         
-        .hidden { display: none; }
+        @media (min-width: 640px) {
+            .card-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: start;
+            }
+        }
+        
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            align-self: flex-start;
+        }
+        
+        .status-draft {
+            background: #fff3e0;
+            color: #ed6c02;
+        }
+        
+        .status-pending {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .status-approved {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .status-rejected {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .card-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 10px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin: 10px 0;
+            font-size: 0.75rem;
+        }
+        
+        @media (min-width: 640px) {
+            .card-meta {
+                grid-template-columns: repeat(4, 1fr);
+                font-size: 0.8rem;
+            }
+        }
+        
+        .meta-item strong {
+            display: block;
+            color: #333;
+            font-size: 0.7rem;
+        }
+        
+        .cost-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.8rem;
+        }
+        
+        .cost-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 4px 0;
+            border-bottom: 1px dashed #dee2e6;
+        }
+        
+        @media (min-width: 640px) {
+            .cost-row {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        @media (min-width: 640px) {
+            .modal {
+                align-items: center;
+                padding: 20px;
+            }
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @media (min-width: 640px) {
+            .modal-content {
+                border-radius: 12px;
+                width: 90%;
+                max-width: 800px;
+            }
+        }
+        
+        .modal-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            position: sticky;
+            top: 0;
+        }
+        
+        .modal-body {
+            padding: 15px;
+        }
+        
+        .modal-footer {
+            padding: 15px;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        @media (min-width: 640px) {
+            .modal-footer {
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .flex {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        @media (min-width: 640px) {
+            .flex {
+                flex-direction: row;
+                gap: 10px;
+            }
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #757575;
+        }
+        
+        .text-small {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .last-saved {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>Continuous Improvement System</h1>
-            <span class="badge">PRIMA+ COURSE</span>
-        </div>
-
-        <!-- Manual Book -->
-        <div class="manual">
-            <h3>📘 MANUAL BOOK & ROLE GUIDELINES</h3>
-            <div class="role-grid">
-                <div class="role-card">
-                    <div class="role-header staff">👷 STAFF</div>
-                    <div class="role-body">
-                        <div class="feature"><span class="check">✅</span> Membuat improvement</div>
-                        <div class="feature"><span class="check">✅</span> Upload foto before/after</div>
-                        <div class="feature"><span class="check">✅</span> Simpan draft</div>
-                        <div class="feature"><span class="uncheck">❌</span> Tidak bisa approval</div>
-                    </div>
-                </div>
-                <div class="role-card">
-                    <div class="role-header manager">👔 MANAGER</div>
-                    <div class="role-body">
-                        <div class="feature"><span class="check">✅</span> Approval level 1</div>
-                        <div class="feature"><span class="check">✅</span> Lihat semua improvement</div>
-                        <div class="feature"><span class="uncheck">❌</span> Tidak bisa create</div>
-                    </div>
-                </div>
-                <div class="role-card">
-                    <div class="role-header director">👨‍💼 DIRECTOR</div>
-                    <div class="role-body">
-                        <div class="feature"><span class="check">✅</span> Approval level 2</div>
-                        <div class="feature"><span class="check">✅</span> Lihat statistik</div>
-                        <div class="feature"><span class="uncheck">❌</span> Tidak bisa create</div>
-                    </div>
-                </div>
-            </div>
+            <h1>Continuous Improvement Monitoring</h1>
+            <span class="demo-badge">DEMO</span>
         </div>
 
         <!-- Login Section -->
-        <div id="loginSection">
+        <div id="loginSection" class="login-container">
             <div class="login-box">
-                <div class="login-header"><h2>LOGIN</h2></div>
+                <div class="login-header">
+                    <h2>Login</h2>
+                </div>
                 <div class="login-body">
-                    <div class="info">
-                        <strong>AKUN DEMO:</strong><br>
-                        Staff: staff@demo.com / 123<br>
-                        Manager: manager@demo.com / 123<br>
-                        Director: director@demo.com / 123
+                    <div class="info-box">
+                        <strong>🔐 Demo Credentials:</strong><br>
+                        Staff: staff@demo.com / staff123<br>
+                        Manager: manager@demo.com / manager123<br>
+                        Director: director@demo.com / director123
                     </div>
+
                     <form id="loginForm">
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" id="email" class="form-control" value="staff@demo.com">
+                            <input type="email" id="email" class="form-control" value="staff@demo.com" required>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" id="password" class="form-control" value="123">
+                            <input type="password" id="password" class="form-control" value="staff123" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
                     </form>
-                    <div class="role-login">
-                        <button class="role-btn" onclick="setLogin('staff@demo.com','123')">👷 Staff</button>
-                        <button class="role-btn" onclick="setLogin('manager@demo.com','123')">👔 Manager</button>
-                        <button class="role-btn" onclick="setLogin('director@demo.com','123')">👨‍💼 Director</button>
+
+                    <div class="role-buttons">
+                        <button type="button" class="role-btn" onclick="fillLogin('staff@demo.com', 'staff123')">Staff</button>
+                        <button type="button" class="role-btn" onclick="fillLogin('manager@demo.com', 'manager123')">Manager</button>
+                        <button type="button" class="role-btn" onclick="fillLogin('director@demo.com', 'director123')">Director</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard -->
+        <!-- Dashboard Section -->
         <div id="dashboardSection" class="dashboard hidden">
+            <!-- User Info -->
             <div class="user-info">
                 <div class="user-detail">
                     <span class="user-name" id="userName"></span>
@@ -167,80 +1001,607 @@
                 <button onclick="logout()" class="btn btn-danger btn-small">Logout</button>
             </div>
 
-            <div id="createBtn">
-                <button onclick="createImprovement()" class="btn btn-success" style="width:100%;margin-bottom:20px;">
-                    + BUAT IMPROVEMENT
-                </button>
-            </div>
-
-            <div id="directorStats" class="hidden">
-                <div class="stats">
-                    <div class="stat-card"><div class="stat-value">15</div><div>Total</div></div>
-                    <div class="stat-card"><div class="stat-value">5</div><div>Pending</div></div>
-                    <div class="stat-card"><div class="stat-value">8</div><div>Approved</div></div>
-                    <div class="stat-card"><div class="stat-value">Rp150jt</div><div>Saving</div></div>
+            <!-- Draft Alert (shown when there's a draft) -->
+            <div id="draftAlert" class="draft-alert hidden">
+                <p>📝 Anda memiliki draft improvement yang belum selesai</p>
+                <div class="draft-actions">
+                    <button onclick="loadDraft()" class="btn btn-warning btn-small">Lanjutkan Draft</button>
+                    <button onclick="discardDraft()" class="btn btn-secondary btn-small">Hapus Draft</button>
                 </div>
             </div>
 
-            <div class="tabs">
-                <button class="tab active" onclick="loadData('pending')">Pending</button>
-                <button class="tab" onclick="loadData('my')">Punya Saya</button>
-                <button class="tab" onclick="loadData('all')">Semua</button>
+            <!-- Create Button -->
+            <button onclick="showCreateForm()" class="btn btn-success" style="width: 100%; margin-bottom: 20px;">
+                + Buat Improvement Baru
+            </button>
+
+            <!-- Create Form -->
+            <div id="createForm" class="create-form hidden">
+                <h3>
+                    Form Improvement Baru
+                    <span id="draftIndicator" class="section-status hidden">Draft Tersimpan</span>
+                </h3>
+                
+                <form id="improvementForm">
+                    <!-- Section 1: Identifikasi Masalah -->
+                    <div class="form-section">
+                        <h4>
+                            Identifikasi Masalah
+                            <span id="section1Status" class="section-status">Belum Lengkap</span>
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label>Judul Improvement <span class="required">*</span></label>
+                            <input type="text" id="title" class="form-control" placeholder="Contoh: Optimasi Proses Produksi">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Permasalahan yang Ada <span class="required">*</span></label>
+                            <textarea id="problem" class="form-control" placeholder="Deskripsikan permasalahan yang ditemukan..." rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Penanggulangan <span class="required">*</span></label>
+                            <textarea id="solution" class="form-control" placeholder="Jelaskan bagaimana cara menanggulangi masalah..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Biaya dan Cost Saving -->
+                    <div class="form-section">
+                        <h4>
+                            Biaya & Cost Saving
+                            <span id="section2Status" class="section-status">Belum Lengkap</span>
+                        </h4>
+                        
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Biaya Penanggulangan <span class="required">*</span></label>
+                                <div class="money-input">
+                                    <span class="prefix">Rp</span>
+                                    <input type="text" id="cost" class="form-control money-field" placeholder="0" 
+                                           onkeyup="formatMoney(this)" 
+                                           onblur="formatMoneyOnBlur(this)" 
+                                           onfocus="this.value=this.value.replace(/\./g, '')">
+                                </div>
+                                <div class="money-hint">Contoh: 1000000 = 1.000.000</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Cost Saving <span class="required">*</span></label>
+                                <div class="money-input">
+                                    <span class="prefix">Rp</span>
+                                    <input type="text" id="saving" class="form-control money-field" placeholder="0" 
+                                           onkeyup="formatMoney(this)" 
+                                           onblur="formatMoneyOnBlur(this)" 
+                                           onfocus="this.value=this.value.replace(/\./g, '')">
+                                </div>
+                                <div class="money-hint">Contoh: 500000 = 500.000</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Rincian Biaya Penanggulangan <span class="required">*</span></label>
+                            <textarea id="costDetails" class="form-control" placeholder="Rincikan biaya-biaya yang diperlukan..." rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Cost Saving <span class="required">*</span></label>
+                            <textarea id="savingDetails" class="form-control" placeholder="Jelaskan bagaimana cost saving bisa tercapai..." rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Dokumentasi Foto -->
+                    <div class="form-section">
+                        <h4>
+                            Dokumentasi Foto
+                            <span id="section3Status" class="section-status">Belum Lengkap</span>
+                        </h4>
+                        
+                        <!-- Upload Foto Before -->
+                        <div class="form-group">
+                            <label>Foto Before (Kondisi Awal) <span class="required">*</span></label>
+                            <div class="upload-container">
+                                <span class="camera-icon">📸</span>
+                                <p>Upload foto atau gunakan kamera</p>
+                                <small>Format: JPG, PNG (Max 5MB)</small>
+                                
+                                <div class="upload-options">
+                                    <button type="button" class="upload-option-btn" onclick="openCamera('before')">
+                                        📷 Kamera
+                                    </button>
+                                    <button type="button" class="upload-option-btn" onclick="openGallery('before')">
+                                        🖼️ Galeri
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="file" id="fileBefore" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'before')">
+                            <input type="file" id="cameraBefore" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event, 'before')">
+                            <div id="previewBefore" class="preview-container"></div>
+                        </div>
+
+                        <!-- Upload Foto After -->
+                        <div class="form-group">
+                            <label>Foto After (Kondisi Setelah Improvement) <span class="required">*</span></label>
+                            <div class="upload-container">
+                                <span class="camera-icon">📸</span>
+                                <p>Upload foto atau gunakan kamera</p>
+                                <small>Format: JPG, PNG (Max 5MB)</small>
+                                
+                                <div class="upload-options">
+                                    <button type="button" class="upload-option-btn" onclick="openCamera('after')">
+                                        📷 Kamera
+                                    </button>
+                                    <button type="button" class="upload-option-btn" onclick="openGallery('after')">
+                                        🖼️ Galeri
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="file" id="fileAfter" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'after')">
+                            <input type="file" id="cameraAfter" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event, 'after')">
+                            <div id="previewAfter" class="preview-container"></div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" onclick="saveDraft()" class="btn btn-outline">
+                            💾 Simpan Draft
+                        </button>
+                        <button type="button" onclick="clearForm()" class="btn btn-secondary">
+                            🗑️ Bersihkan
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            📤 Submit Improvement
+                        </button>
+                    </div>
+                    
+                    <div id="lastSaved" class="last-saved hidden"></div>
+                </form>
             </div>
 
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" id="pendingTab" onclick="loadData('pending')">Pending</button>
+                <button class="tab" id="draftTab" onclick="loadData('draft')">Draft Saya</button>
+                <button class="tab" id="myTab" onclick="loadData('my')">Saya</button>
+                <button class="tab" id="allTab" onclick="loadData('all')">Semua</button>
+            </div>
+
+            <!-- Improvements List -->
             <div id="improvementsList"></div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-logo">PRIMA+ · COURSE</div>
-        <div class="footer-copyright">created by PRIMA+ COURSE © 2026</div>
-        <div class="footer-tagline">People Resource · Innovation & Mastery</div>
-    </footer>
+    <!-- Approval Modal -->
+    <div id="approvalModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Approval Improvement</h3>
+            </div>
+            <div class="modal-body">
+                <div class="info-display" id="modalInfo"></div>
+                <div id="modalPhotos" class="photo-gallery"></div>
+                
+                <div class="form-group">
+                    <label>Keputusan</label>
+                    <select id="approvalAction" class="form-control">
+                        <option value="approved">Approve</option>
+                        <option value="rejected">Reject</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Komentar</label>
+                    <textarea id="approvalComments" class="form-control" rows="3" placeholder="Tambahkan komentar..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="submitApproval()" class="btn btn-primary">Submit</button>
+                <button onclick="closeModal()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detail Improvement</h3>
+            </div>
+            <div class="modal-body">
+                <div id="detailInfo" class="info-display"></div>
+                <div id="detailPhotos" class="photo-gallery"></div>
+                <div id="detailCost" class="cost-info"></div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeDetailModal()" class="btn btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
 
     <script>
+        // ==================== DATA STORE ====================
         let currentUser = null;
+        let currentImprovementId = null;
         
-        const improvements = [
-            { id:1, title:'Optimasi Produksi', problem:'Mesin idle', cost:5000000, saving:15000000, status:'pending', level:1, creator:'staff1', creatorName:'Staff Demo' },
-            { id:2, title:'Reduksi Waste', problem:'Scrap tinggi', cost:2000000, saving:8000000, status:'approved', level:2, creator:'staff1', creatorName:'Staff Demo' },
-            { id:3, title:'Safety Program', problem:'Kecelakaan', cost:3000000, saving:12000000, status:'pending', level:2, creator:'manager1', creatorName:'Manager Demo' }
+        // Auto-save draft setiap 30 detik
+        let autoSaveInterval = null;
+        
+        // Draft improvement (disimpan di localStorage)
+        let currentDraft = {
+            title: '',
+            problem: '',
+            solution: '',
+            cost: '',
+            saving: '',
+            costDetails: '',
+            savingDetails: '',
+            photoBefore: null,
+            photoAfter: null,
+            lastSaved: null
+        };
+        
+        // Improvements list
+        let improvements = [
+            {
+                id: '1',
+                title: 'Optimasi Proses Produksi',
+                problem: 'Mesin sering idle dan banyak waktu tunggu antar proses',
+                solution: 'Re-layout production line dan implementasi sistem kanban',
+                cost: 5000000,
+                costDetails: 'Biaya konsultan: Rp 3.000.000, Material: Rp 2.000.000',
+                saving: 15000000,
+                savingDetails: 'Efisiensi waktu 20% = Rp 10.000.000/bulan, Reduksi waste = Rp 5.000.000/bulan',
+                category: 'process',
+                proposerId: 'staff1',
+                proposerName: 'Staff Demo',
+                proposerRole: 'staff',
+                status: 'pending',
+                currentLevel: 1,
+                maxLevel: 2,
+                createdAt: new Date().toISOString(),
+                photoBefore: null,
+                photoAfter: null
+            },
+            {
+                id: '2',
+                title: 'Reduksi Waste Material',
+                problem: 'Scrap rate tinggi mencapai 15%',
+                solution: 'Implementasi metode lean manufacturing dan training operator',
+                cost: 2000000,
+                costDetails: 'Training: Rp 1.500.000, Tools: Rp 500.000',
+                saving: 8000000,
+                savingDetails: 'Scrap turun 10% = Rp 8.000.000/bulan',
+                category: 'cost',
+                proposerId: 'staff1',
+                proposerName: 'Staff Demo',
+                proposerRole: 'staff',
+                status: 'approved',
+                currentLevel: 2,
+                maxLevel: 2,
+                createdAt: new Date(Date.now() - 86400000).toISOString(),
+                photoBefore: null,
+                photoAfter: null
+            }
         ];
 
-        function formatRupiah(angka) {
-            return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        // ==================== MONEY FORMAT FUNCTIONS ====================
+        function formatMoney(input) {
+            let value = input.value.replace(/\./g, '');
+            value = value.replace(/[^\d]/g, '');
+            
+            if (value) {
+                value = parseInt(value, 10).toString();
+                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            } else {
+                input.value = '';
+            }
+        }
+        
+        function formatMoneyOnBlur(input) {
+            let value = input.value.replace(/\./g, '');
+            value = value.replace(/[^\d]/g, '');
+            
+            if (value) {
+                value = parseInt(value, 10).toString();
+                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+        }
+        
+        function getRawMoneyValue(formattedValue) {
+            if (!formattedValue) return 0;
+            return parseInt(formattedValue.replace(/\./g, '')) || 0;
+        }
+        
+        function formatRupiah(amount) {
+            if (!amount && amount !== 0) return 'Rp 0';
+            return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
 
-        window.setLogin = function(email, pass) {
+        // ==================== DRAFT FUNCTIONS ====================
+        
+        // Simpan draft ke localStorage
+        function saveDraft() {
+            // Ambil nilai dari form
+            currentDraft = {
+                title: document.getElementById('title').value,
+                problem: document.getElementById('problem').value,
+                solution: document.getElementById('solution').value,
+                cost: document.getElementById('cost').value,
+                saving: document.getElementById('saving').value,
+                costDetails: document.getElementById('costDetails').value,
+                savingDetails: document.getElementById('savingDetails').value,
+                photoBefore: photoBeforeData,
+                photoAfter: photoAfterData,
+                lastSaved: new Date().toISOString()
+            };
+            
+            // Simpan ke localStorage
+            localStorage.setItem('improvementDraft', JSON.stringify(currentDraft));
+            
+            // Update UI
+            document.getElementById('draftIndicator').classList.remove('hidden');
+            document.getElementById('lastSaved').innerHTML = 'Terakhir disimpan: ' + new Date().toLocaleTimeString('id-ID');
+            document.getElementById('lastSaved').classList.remove('hidden');
+            
+            // Tampilkan alert draft
+            document.getElementById('draftAlert').classList.remove('hidden');
+            
+            // Update status section
+            updateSectionStatus();
+            
+            alert('Draft berhasil disimpan!');
+        }
+        
+        // Load draft dari localStorage
+        function loadDraft() {
+            const savedDraft = localStorage.getItem('improvementDraft');
+            if (savedDraft) {
+                currentDraft = JSON.parse(savedDraft);
+                
+                // Isi form dengan draft
+                document.getElementById('title').value = currentDraft.title || '';
+                document.getElementById('problem').value = currentDraft.problem || '';
+                document.getElementById('solution').value = currentDraft.solution || '';
+                document.getElementById('cost').value = currentDraft.cost || '';
+                document.getElementById('saving').value = currentDraft.saving || '';
+                document.getElementById('costDetails').value = currentDraft.costDetails || '';
+                document.getElementById('savingDetails').value = currentDraft.savingDetails || '';
+                
+                // Load foto
+                if (currentDraft.photoBefore) {
+                    photoBeforeData = currentDraft.photoBefore;
+                    displayPhoto('before', currentDraft.photoBefore);
+                }
+                
+                if (currentDraft.photoAfter) {
+                    photoAfterData = currentDraft.photoAfter;
+                    displayPhoto('after', currentDraft.photoAfter);
+                }
+                
+                // Tampilkan form
+                showCreateForm();
+                
+                // Update UI
+                document.getElementById('draftIndicator').classList.remove('hidden');
+                if (currentDraft.lastSaved) {
+                    document.getElementById('lastSaved').innerHTML = 'Terakhir disimpan: ' + new Date(currentDraft.lastSaved).toLocaleTimeString('id-ID');
+                    document.getElementById('lastSaved').classList.remove('hidden');
+                }
+                
+                updateSectionStatus();
+            }
+        }
+        
+        // Hapus draft
+        function discardDraft() {
+            if (confirm('Hapus draft ini?')) {
+                localStorage.removeItem('improvementDraft');
+                currentDraft = {
+                    title: '', problem: '', solution: '',
+                    cost: '', saving: '', costDetails: '', savingDetails: '',
+                    photoBefore: null, photoAfter: null, lastSaved: null
+                };
+                document.getElementById('draftAlert').classList.add('hidden');
+                document.getElementById('draftIndicator').classList.add('hidden');
+                document.getElementById('lastSaved').classList.add('hidden');
+                clearForm();
+            }
+        }
+        
+        // Auto-save setiap 30 detik
+        function startAutoSave() {
+            if (autoSaveInterval) clearInterval(autoSaveInterval);
+            autoSaveInterval = setInterval(() => {
+                // Cek apakah form sedang ditampilkan
+                if (!document.getElementById('createForm').classList.contains('hidden')) {
+                    saveDraft();
+                }
+            }, 30000); // 30 detik
+        }
+        
+        // Update status section (lengkap/belum)
+        function updateSectionStatus() {
+            // Section 1
+            const title = document.getElementById('title').value;
+            const problem = document.getElementById('problem').value;
+            const solution = document.getElementById('solution').value;
+            
+            if (title && problem && solution) {
+                document.getElementById('section1Status').textContent = 'Lengkap';
+                document.getElementById('section1Status').classList.add('completed');
+            } else {
+                document.getElementById('section1Status').textContent = 'Belum Lengkap';
+                document.getElementById('section1Status').classList.remove('completed');
+            }
+            
+            // Section 2
+            const cost = document.getElementById('cost').value;
+            const saving = document.getElementById('saving').value;
+            const costDetails = document.getElementById('costDetails').value;
+            const savingDetails = document.getElementById('savingDetails').value;
+            
+            if (cost && saving && costDetails && savingDetails) {
+                document.getElementById('section2Status').textContent = 'Lengkap';
+                document.getElementById('section2Status').classList.add('completed');
+            } else {
+                document.getElementById('section2Status').textContent = 'Belum Lengkap';
+                document.getElementById('section2Status').classList.remove('completed');
+            }
+            
+            // Section 3
+            if (photoBeforeData && photoAfterData) {
+                document.getElementById('section3Status').textContent = 'Lengkap';
+                document.getElementById('section3Status').classList.add('completed');
+            } else {
+                document.getElementById('section3Status').textContent = 'Belum Lengkap';
+                document.getElementById('section3Status').classList.remove('completed');
+            }
+        }
+
+        // ==================== CAMERA & GALLERY FUNCTIONS ====================
+        
+        window.openCamera = function(type) {
+            if (type === 'before') {
+                document.getElementById('cameraBefore').click();
+            } else {
+                document.getElementById('cameraAfter').click();
+            }
+        };
+        
+        window.openGallery = function(type) {
+            if (type === 'before') {
+                document.getElementById('fileBefore').click();
+            } else {
+                document.getElementById('fileAfter').click();
+            }
+        };
+        
+        window.handleFileSelect = function(event, type) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (type === 'before') {
+                        photoBeforeData = e.target.result;
+                        displayPhoto('before', e.target.result);
+                    } else {
+                        photoAfterData = e.target.result;
+                        displayPhoto('after', e.target.result);
+                    }
+                    updateSectionStatus();
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        
+        function displayPhoto(type, dataUrl) {
+            const container = document.getElementById(type === 'before' ? 'previewBefore' : 'previewAfter');
+            
+            container.innerHTML = `
+                <div class="preview-item">
+                    <div class="preview-label">
+                        Foto ${type === 'before' ? 'Before' : 'After'}
+                        <div class="photo-actions">
+                            <button type="button" class="photo-action-btn" onclick="rotatePhoto('${type}')">🔄</button>
+                        </div>
+                    </div>
+                    <img src="${dataUrl}" alt="Preview">
+                    <button type="button" class="remove-image" onclick="removePhoto('${type}')">Hapus Foto</button>
+                </div>
+            `;
+        }
+        
+        window.removePhoto = function(type) {
+            if (type === 'before') {
+                photoBeforeData = null;
+                document.getElementById('previewBefore').innerHTML = '';
+                document.getElementById('fileBefore').value = '';
+                document.getElementById('cameraBefore').value = '';
+            } else {
+                photoAfterData = null;
+                document.getElementById('previewAfter').innerHTML = '';
+                document.getElementById('fileAfter').value = '';
+                document.getElementById('cameraAfter').value = '';
+            }
+            updateSectionStatus();
+        };
+        
+        window.rotatePhoto = function(type) {
+            // Fungsi untuk rotate foto (bisa ditambahkan nanti)
+            alert('Fitur rotate foto akan segera hadir!');
+        };
+
+        // ==================== FORM FUNCTIONS ====================
+        
+        window.showCreateForm = function() {
+            document.getElementById('createForm').classList.remove('hidden');
+            startAutoSave();
+            
+            // Cek apakah ada draft
+            if (localStorage.getItem('improvementDraft')) {
+                document.getElementById('draftAlert').classList.remove('hidden');
+            }
+        };
+        
+        window.hideCreateForm = function() {
+            document.getElementById('createForm').classList.add('hidden');
+            if (autoSaveInterval) {
+                clearInterval(autoSaveInterval);
+            }
+        };
+        
+        window.clearForm = function() {
+            if (confirm('Bersihkan semua field?')) {
+                document.getElementById('improvementForm').reset();
+                removePhoto('before');
+                removePhoto('after');
+                updateSectionStatus();
+            }
+        };
+
+        // ==================== LOGIN FUNCTIONS ====================
+        
+        window.fillLogin = function(email, password) {
             document.getElementById('email').value = email;
-            document.getElementById('password').value = pass;
+            document.getElementById('password').value = password;
         };
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
             
-            if(email.includes('staff')) currentUser = { id:'staff1', name:'Staff Demo', role:'staff' };
-            else if(email.includes('manager')) currentUser = { id:'manager1', name:'Manager Demo', role:'manager' };
-            else if(email.includes('director')) currentUser = { id:'director1', name:'Director Demo', role:'director' };
-            else { alert('Email tidak dikenal'); return; }
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === 'staff@demo.com' && password === 'staff123') {
+                currentUser = {
+                    id: 'staff1',
+                    name: 'Staff Demo',
+                    role: 'staff'
+                };
+            } else if (email === 'manager@demo.com' && password === 'manager123') {
+                currentUser = {
+                    id: 'manager1',
+                    name: 'Manager Demo',
+                    role: 'manager'
+                };
+            } else if (email === 'director@demo.com' && password === 'director123') {
+                currentUser = {
+                    id: 'director1',
+                    name: 'Director Demo',
+                    role: 'director'
+                };
+            } else {
+                alert('Email atau password salah!');
+                return;
+            }
 
             document.getElementById('loginSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
             
-            document.getElementById('userName').innerText = currentUser.name;
-            const roleSpan = document.getElementById('userRole');
-            roleSpan.innerText = currentUser.role;
-            roleSpan.className = 'user-role role-' + currentUser.role;
-
-            if(currentUser.role === 'director') {
-                document.getElementById('createBtn').classList.add('hidden');
-                document.getElementById('directorStats').classList.remove('hidden');
-            } else {
-                document.getElementById('createBtn').classList.remove('hidden');
-                document.getElementById('directorStats').classList.add('hidden');
-            }
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userRole').textContent = currentUser.role;
+            
             loadData('pending');
         });
 
@@ -248,55 +1609,348 @@
             currentUser = null;
             document.getElementById('loginSection').classList.remove('hidden');
             document.getElementById('dashboardSection').classList.add('hidden');
+            if (autoSaveInterval) {
+                clearInterval(autoSaveInterval);
+            }
         };
 
-        window.createImprovement = function() {
-            if(currentUser.role === 'director') alert('Director tidak bisa membuat improvement!');
-            else alert('Form create akan muncul di sini');
-        };
-
-        window.loadData = function(type) {
-            let filtered = [];
-            if(type === 'my') filtered = improvements.filter(i => i.creator === currentUser.id);
-            else if(type === 'pending') {
-                if(currentUser.role === 'manager') filtered = improvements.filter(i => i.status === 'pending' && i.level === 1);
-                else if(currentUser.role === 'director') filtered = improvements.filter(i => i.status === 'pending' && i.level === 2);
-                else filtered = improvements.filter(i => i.status === 'pending');
-            } else filtered = improvements;
-
-            const container = document.getElementById('improvementsList');
-            if(filtered.length === 0) {
-                container.innerHTML = '<div style="text-align:center;padding:40px;">Tidak ada data</div>';
+        // ==================== CREATE IMPROVEMENT ====================
+        
+        document.getElementById('improvementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validasi semua field wajib
+            const title = document.getElementById('title').value;
+            const problem = document.getElementById('problem').value;
+            const solution = document.getElementById('solution').value;
+            
+            if (!title || !problem || !solution) {
+                alert('Bagian Identifikasi Masalah harus diisi lengkap!');
+                return;
+            }
+            
+            const costDisplay = document.getElementById('cost').value;
+            const savingDisplay = document.getElementById('saving').value;
+            const costDetails = document.getElementById('costDetails').value;
+            const savingDetails = document.getElementById('savingDetails').value;
+            
+            if (!costDisplay || !savingDisplay || !costDetails || !savingDetails) {
+                alert('Bagian Biaya & Cost Saving harus diisi lengkap!');
+                return;
+            }
+            
+            if (!photoBeforeData || !photoAfterData) {
+                alert('Foto before dan after harus diupload!');
                 return;
             }
 
-            container.innerHTML = filtered.map(item => `
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">${item.title}</span>
-                        <span class="badge badge-${item.status}">${item.status}</span>
+            const cost = getRawMoneyValue(costDisplay);
+            const saving = getRawMoneyValue(savingDisplay);
+
+            const newImprovement = {
+                id: Date.now().toString(),
+                title: title,
+                problem: problem,
+                solution: solution,
+                cost: cost,
+                costDetails: costDetails,
+                saving: saving,
+                savingDetails: savingDetails,
+                category: 'process',
+                proposerId: currentUser.id,
+                proposerName: currentUser.name,
+                proposerRole: currentUser.role,
+                status: 'pending',
+                currentLevel: 1,
+                maxLevel: 2,
+                createdAt: new Date().toISOString(),
+                photoBefore: photoBeforeData,
+                photoAfter: photoAfterData
+            };
+
+            improvements.unshift(newImprovement);
+            
+            // Hapus draft setelah submit
+            localStorage.removeItem('improvementDraft');
+            
+            alert(`Improvement berhasil disubmit!\n\nBiaya: ${formatRupiah(cost)}\nCost Saving: ${formatRupiah(saving)}`);
+            
+            hideCreateForm();
+            clearForm();
+            
+            loadData('my');
+        });
+
+        // ==================== LOAD & DISPLAY DATA ====================
+        
+        window.loadData = function(type) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(type + 'Tab').classList.add('active');
+
+            let filtered = [];
+            
+            if (type === 'my') {
+                filtered = improvements.filter(imp => imp.proposerId === currentUser.id);
+            } else if (type === 'draft') {
+                // Tampilkan draft dari localStorage
+                displayDrafts();
+                return;
+            } else if (type === 'pending') {
+                if (currentUser.role === 'manager') {
+                    filtered = improvements.filter(imp => imp.status === 'pending' && imp.currentLevel === 1);
+                } else if (currentUser.role === 'director') {
+                    filtered = improvements.filter(imp => imp.status === 'pending' && imp.currentLevel === 2);
+                } else {
+                    filtered = improvements.filter(imp => imp.status === 'pending');
+                }
+            } else {
+                filtered = improvements;
+            }
+
+            displayImprovements(filtered);
+        };
+        
+        function displayDrafts() {
+            const container = document.getElementById('improvementsList');
+            const savedDraft = localStorage.getItem('improvementDraft');
+            
+            if (!savedDraft) {
+                container.innerHTML = '<div class="empty-state">Tidak ada draft tersimpan</div>';
+                return;
+            }
+            
+            const draft = JSON.parse(savedDraft);
+            
+            container.innerHTML = `
+                <div class="draft-item">
+                    <div class="draft-info">
+                        <h5>${draft.title || 'Judul belum diisi'}</h5>
+                        <p>Terakhir diedit: ${draft.lastSaved ? new Date(draft.lastSaved).toLocaleString('id-ID') : 'Belum pernah'}</p>
                     </div>
-                    <div style="font-size:13px;margin-bottom:10px;">${item.problem}</div>
-                    <div class="card-meta">
-                        <div>💰 ${formatRupiah(item.cost)}</div>
-                        <div>💵 ${formatRupiah(item.saving)}</div>
-                        <div>📊 Level ${item.level}/2</div>
-                        <div>👤 ${item.creatorName}</div>
-                    </div>
-                    <div class="card-actions">
-                        ${canApprove(item) ? '<button class="btn btn-primary btn-small" onclick="alert(\'Approval\')">Approve</button>' : ''}
-                        <button class="btn btn-small" onclick="alert(\'Detail\')">Detail</button>
+                    <div class="draft-item-actions">
+                        <button onclick="loadDraft()" class="btn btn-warning btn-small">Lanjutkan</button>
+                        <button onclick="discardDraft()" class="btn btn-danger btn-small">Hapus</button>
                     </div>
                 </div>
-            `).join('');
-        };
+            `;
+        }
+
+        function displayImprovements(items) {
+            const container = document.getElementById('improvementsList');
+            
+            if (items.length === 0) {
+                container.innerHTML = '<div class="empty-state">Tidak ada improvement ditemukan</div>';
+                return;
+            }
+
+            container.innerHTML = items.map(item => {
+                const hasPhotos = item.photoBefore || item.photoAfter;
+                
+                return `
+                <div class="improvement-card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">${item.title}</div>
+                            <p class="text-small">${item.problem.substring(0, 80)}${item.problem.length > 80 ? '...' : ''}</p>
+                        </div>
+                        <span class="status-badge status-${item.status}">${item.status}</span>
+                    </div>
+                    
+                    ${hasPhotos ? `
+                        <div class="photo-gallery">
+                            ${item.photoBefore ? `
+                                <div class="photo-item">
+                                    <div class="photo-label">Before</div>
+                                    <img src="${item.photoBefore}" alt="Before" onclick="openDetail('${item.id}')">
+                                </div>
+                            ` : ''}
+                            ${item.photoAfter ? `
+                                <div class="photo-item">
+                                    <div class="photo-label">After</div>
+                                    <img src="${item.photoAfter}" alt="After" onclick="openDetail('${item.id}')">
+                                </div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+                    
+                    <div class="cost-info">
+                        <div class="cost-row">
+                            <span class="cost-label">Biaya:</span>
+                            <span class="cost-value">${formatRupiah(item.cost)}</span>
+                        </div>
+                        <div class="cost-row">
+                            <span class="cost-label">Cost Saving:</span>
+                            <span class="cost-value">${formatRupiah(item.saving)}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-meta">
+                        <div class="meta-item">
+                            <strong>Kategori</strong>
+                            ${item.category}
+                        </div>
+                        <div class="meta-item">
+                            <strong>Pembuat</strong>
+                            ${item.proposerName}
+                        </div>
+                        <div class="meta-item">
+                            <strong>Tanggal</strong>
+                            ${new Date(item.createdAt).toLocaleDateString('id-ID')}
+                        </div>
+                        <div class="meta-item">
+                            <strong>Level</strong>
+                            ${item.currentLevel}/${item.maxLevel}
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        ${canApprove(item) ? `
+                            <button onclick="openApprovalModal('${item.id}')" class="btn btn-primary btn-small" style="flex: 1;">Review</button>
+                        ` : ''}
+                        <button onclick="openDetail('${item.id}')" class="btn btn-secondary btn-small" style="flex: 1;">Detail</button>
+                    </div>
+                </div>
+            `}).join('');
+        }
 
         function canApprove(item) {
-            if(!currentUser || item.status !== 'pending') return false;
-            if(currentUser.role === 'manager' && item.level === 1) return true;
-            if(currentUser.role === 'director' && item.level === 2) return true;
+            if (!currentUser || item.status !== 'pending') return false;
+            if (currentUser.role === 'manager' && item.currentLevel === 1) return true;
+            if (currentUser.role === 'director' && item.currentLevel === 2) return true;
             return false;
         }
+
+        // ==================== DETAIL MODAL ====================
+        
+        window.openDetail = function(id) {
+            const item = improvements.find(i => i.id === id);
+            
+            document.getElementById('detailInfo').innerHTML = `
+                <h4 style="margin-bottom: 10px;">${item.title}</h4>
+                <p><strong>Permasalahan:</strong><br>${item.problem}</p>
+                <p><strong>Penanggulangan:</strong><br>${item.solution}</p>
+            `;
+            
+            document.getElementById('detailPhotos').innerHTML = `
+                ${item.photoBefore ? `
+                    <div class="photo-item">
+                        <div class="photo-label">Foto Before</div>
+                        <img src="${item.photoBefore}" alt="Before">
+                    </div>
+                ` : ''}
+                ${item.photoAfter ? `
+                    <div class="photo-item">
+                        <div class="photo-label">Foto After</div>
+                        <img src="${item.photoAfter}" alt="After">
+                    </div>
+                ` : ''}
+            `;
+            
+            document.getElementById('detailCost').innerHTML = `
+                <h4 style="margin-bottom: 10px;">Rincian Biaya</h4>
+                <div class="cost-row">
+                    <span class="cost-label">Biaya:</span>
+                    <span class="cost-value">${formatRupiah(item.cost)}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Rincian:</span>
+                    <span>${item.costDetails}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Cost Saving:</span>
+                    <span class="cost-value">${formatRupiah(item.saving)}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Rincian:</span>
+                    <span>${item.savingDetails}</span>
+                </div>
+            `;
+            
+            document.getElementById('detailModal').classList.remove('hidden');
+        };
+
+        window.closeDetailModal = function() {
+            document.getElementById('detailModal').classList.add('hidden');
+        };
+
+        // ==================== APPROVAL MODAL ====================
+        
+        window.openApprovalModal = function(id) {
+            currentImprovementId = id;
+            const item = improvements.find(i => i.id === id);
+            
+            document.getElementById('modalInfo').innerHTML = `
+                <p><strong>Judul:</strong> ${item.title}</p>
+                <p><strong>Biaya:</strong> ${formatRupiah(item.cost)}</p>
+                <p><strong>Cost Saving:</strong> ${formatRupiah(item.saving)}</p>
+                <p><strong>Level:</strong> ${item.currentLevel}/${item.maxLevel}</p>
+            `;
+            
+            document.getElementById('modalPhotos').innerHTML = `
+                ${item.photoBefore ? `
+                    <div class="photo-item">
+                        <div class="photo-label">Before</div>
+                        <img src="${item.photoBefore}" alt="Before">
+                    </div>
+                ` : ''}
+                ${item.photoAfter ? `
+                    <div class="photo-item">
+                        <div class="photo-label">After</div>
+                        <img src="${item.photoAfter}" alt="After">
+                    </div>
+                ` : ''}
+            `;
+            
+            document.getElementById('approvalModal').classList.remove('hidden');
+        };
+
+        window.closeModal = function() {
+            document.getElementById('approvalModal').classList.add('hidden');
+            document.getElementById('approvalComments').value = '';
+        };
+
+        window.submitApproval = function() {
+            const action = document.getElementById('approvalAction').value;
+            const comments = document.getElementById('approvalComments').value;
+            
+            const item = improvements.find(i => i.id === currentImprovementId);
+            
+            if (action === 'rejected') {
+                item.status = 'rejected';
+            } else {
+                if (item.currentLevel >= item.maxLevel) {
+                    item.status = 'approved';
+                } else {
+                    item.currentLevel++;
+                }
+            }
+
+            alert(`Improvement berhasil di-${action === 'approved' ? 'approve' : 'reject'}!`);
+            closeModal();
+            
+            const activeTab = document.querySelector('.tab.active').id.replace('Tab', '');
+            loadData(activeTab);
+        };
+
+        // ==================== EVENT LISTENERS ====================
+        
+        // Update status section setiap kali ada input
+        document.getElementById('title').addEventListener('input', updateSectionStatus);
+        document.getElementById('problem').addEventListener('input', updateSectionStatus);
+        document.getElementById('solution').addEventListener('input', updateSectionStatus);
+        document.getElementById('cost').addEventListener('input', updateSectionStatus);
+        document.getElementById('saving').addEventListener('input', updateSectionStatus);
+        document.getElementById('costDetails').addEventListener('input', updateSectionStatus);
+        document.getElementById('savingDetails').addEventListener('input', updateSectionStatus);
+        
+        // Cek draft saat halaman dimuat
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('improvementDraft')) {
+                document.getElementById('draftAlert').classList.remove('hidden');
+            }
+        });
     </script>
 </body>
 </html>
