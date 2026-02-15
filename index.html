@@ -2,807 +2,163 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Continuous Improvement - With Manual Book & Footer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI Monitoring - PRIMA+</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-        }
-        
-        body {
-            background: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 10px;
-            flex: 1;
-        }
-        
-        @media (min-width: 640px) {
-            .container {
-                padding: 20px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; flex: 1; }
         
         /* Header */
-        .header {
-            background: #1976d2;
-            color: white;
-            padding: 15px;
-            border-radius: 8px 8px 0 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            text-align: center;
-        }
-        
-        @media (min-width: 480px) {
-            .header {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-                padding: 20px;
-            }
-        }
-        
-        .header h1 {
-            font-size: 1.2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .header h1 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        .demo-badge {
-            background: #ffc107;
-            color: #1976d2;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
+        .header { background: #1e3a8a; color: white; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .badge { background: #fbbf24; color: #1e3a8a; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
         
         /* Manual Book */
-        .manual-book {
-            background: white;
-            border-radius: 0 0 8px 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid #1976d2;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        .manual { background: white; padding: 20px; border-radius: 0 0 10px 10px; margin-bottom: 20px; }
+        .manual h3 { color: #1e3a8a; margin-bottom: 15px; }
+        .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        @media (max-width: 768px) { .role-grid { grid-template-columns: 1fr; } }
+        .role-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .role-header { padding: 12px; color: white; font-weight: bold; }
+        .staff { background: #16a34a; }
+        .manager { background: #ea580c; }
+        .director { background: #1e3a8a; }
+        .role-body { padding: 15px; background: #f9fafb; }
+        .feature { padding: 5px 0; display: flex; gap: 8px; font-size: 14px; }
+        .check { color: #16a34a; }
+        .uncheck { color: #dc2626; }
         
-        .manual-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 15px;
-            color: #1976d2;
-        }
+        /* Login */
+        .login-box { max-width: 400px; margin: 30px auto; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .login-header { background: #f3f4f6; padding: 20px; text-align: center; border-bottom: 1px solid #ddd; }
+        .login-body { padding: 25px; }
+        .info { background: #dbeafe; border-left: 4px solid #1e3a8a; padding: 12px; margin-bottom: 20px; font-size: 14px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+        .form-control { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 5px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background: #1e3a8a; color: white; width: 100%; }
+        .btn-primary:hover { background: #1e3a8a; opacity: 0.9; }
+        .btn-success { background: #16a34a; color: white; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-small { padding: 5px 10px; font-size: 12px; }
         
-        .manual-title h2 {
-            font-size: 1.1rem;
-        }
-        
-        .role-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        @media (min-width: 640px) {
-            .role-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        .role-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-        
-        .role-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .role-card.staff {
-            border-top: 4px solid #2e7d32;
-        }
-        
-        .role-card.manager {
-            border-top: 4px solid #ed6c02;
-        }
-        
-        .role-card.director {
-            border-top: 4px solid #1976d2;
-        }
-        
-        .role-header {
-            padding: 12px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .role-icon {
-            font-size: 1.5rem;
-        }
-        
-        .role-name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .role-name.staff {
-            color: #2e7d32;
-        }
-        
-        .role-name.manager {
-            color: #ed6c02;
-        }
-        
-        .role-name.director {
-            color: #1976d2;
-        }
-        
-        .role-body {
-            padding: 12px;
-        }
-        
-        .role-feature {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 0;
-            font-size: 0.85rem;
-        }
-        
-        .feature-check {
-            color: #2e7d32;
-            font-weight: bold;
-        }
-        
-        .feature-uncheck {
-            color: #d32f2f;
-        }
-        
-        /* Login Box */
-        .login-container {
-            max-width: 450px;
-            margin: 20px auto;
-        }
-        
-        .login-box {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .login-header {
-            background: #f8f9fa;
-            padding: 20px;
-            border-bottom: 1px solid #dee2e6;
-            text-align: center;
-        }
-        
-        .login-header h2 {
-            font-size: 1.3rem;
-            color: #333;
-        }
-        
-        .login-body {
-            padding: 20px;
-        }
-        
-        .info-box {
-            background: #e3f2fd;
-            border: 1px solid #90caf9;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-            color: #0d47a1;
-        }
-        
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 500;
-            color: #333;
-            font-size: 0.9rem;
-        }
-        
-        .form-group label .required {
-            color: #d32f2f;
-            margin-left: 4px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: #1976d2;
-        }
-        
-        /* Buttons */
-        .btn {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .btn:active {
-            transform: scale(0.98);
-        }
-        
-        .btn-primary {
-            background: #1976d2;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #1565c0;
-        }
-        
-        .btn-success {
-            background: #2e7d32;
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background: #1b5e20;
-        }
-        
-        .btn-danger {
-            background: #d32f2f;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background: #b71c1c;
-        }
-        
-        .btn-secondary {
-            background: #757575;
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background: #616161;
-        }
-        
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-        }
-        
-        .role-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 15px;
-        }
-        
-        .role-btn {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            padding: 6px 12px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            transition: all 0.3s;
-            flex: 1;
-            min-width: 80px;
-        }
-        
-        .role-btn.staff:hover {
-            background: #c8e6c9;
-            border-color: #2e7d32;
-        }
-        
-        .role-btn.manager:hover {
-            background: #fff3e0;
-            border-color: #ed6c02;
-        }
-        
-        .role-btn.director:hover {
-            background: #e3f2fd;
-            border-color: #1976d2;
-        }
+        .role-login { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
+        .role-btn { padding: 8px 15px; border: 1px solid #ddd; border-radius: 20px; background: white; cursor: pointer; }
         
         /* Dashboard */
-        .dashboard {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            padding: 15px;
-            margin-bottom: 20px;
-        }
+        .dashboard { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .user-info { background: #f9fafb; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .user-detail { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .user-name { font-size: 18px; font-weight: bold; }
+        .user-role { padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .role-staff { background: #dcfce7; color: #16a34a; }
+        .role-manager { background: #ffedd5; color: #ea580c; }
+        .role-director { background: #dbeafe; color: #1e3a8a; }
         
-        .user-info {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: flex-start;
-        }
-        
-        @media (min-width: 640px) {
-            .user-info {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-        
-        .user-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-        
-        @media (min-width: 640px) {
-            .user-detail {
-                flex-direction: row;
-                align-items: center;
-                width: auto;
-            }
-        }
-        
-        .user-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .user-role {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: inline-block;
-            align-self: flex-start;
-        }
-        
-        .user-role.staff {
-            background: #c8e6c9;
-            color: #2e7d32;
-        }
-        
-        .user-role.manager {
-            background: #fff3e0;
-            color: #ed6c02;
-        }
-        
-        .user-role.director {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
+        /* Stats */
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+        .stat-card { background: #f9fafb; padding: 15px; border-radius: 8px; text-align: center; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #1e3a8a; }
         
         /* Tabs */
-        .tabs {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            margin-bottom: 20px;
-        }
-        
-        @media (min-width: 640px) {
-            .tabs {
-                flex-direction: row;
-                border-bottom: 2px solid #e0e0e0;
-            }
-        }
-        
-        .tab {
-            padding: 10px;
-            background: #f5f5f5;
-            border: none;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #666;
-            border-radius: 6px;
-            text-align: center;
-        }
-        
-        @media (min-width: 640px) {
-            .tab {
-                padding: 12px 20px;
-                background: none;
-                border-radius: 0;
-            }
-            
-            .tab.active {
-                color: #1976d2;
-                border-bottom: 2px solid #1976d2;
-                margin-bottom: -2px;
-            }
-        }
-        
-        .tab.active {
-            background: #1976d2;
-            color: white;
-        }
-        
-        @media (min-width: 640px) {
-            .tab.active {
-                background: none;
-                color: #1976d2;
-            }
-        }
-        
-        /* Director Stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        @media (min-width: 640px) {
-            .stats-container {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
-        .stat-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1976d2;
-        }
-        
-        .stat-label {
-            font-size: 0.75rem;
-            color: #666;
-            margin-top: 4px;
-        }
-        
-        .achievement-chart {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .chart-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 8px 0;
-        }
-        
-        .chart-label {
-            width: 80px;
-            font-size: 0.8rem;
-        }
-        
-        .bar-container {
-            flex: 1;
-            height: 20px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .bar-fill {
-            height: 100%;
-            background: #1976d2;
-            border-radius: 10px;
-        }
-        
-        /* Footer */
-        .footer {
-            background: #1a237e;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #ffc107;
-        }
-        
-        .footer-copyright {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin-bottom: 4px;
-        }
-        
-        .footer-tagline {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            letter-spacing: 1px;
-        }
+        .tabs { display: flex; gap: 5px; border-bottom: 2px solid #ddd; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab { padding: 10px 20px; border: none; background: none; cursor: pointer; }
+        .tab.active { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; margin-bottom: -2px; }
         
         /* Cards */
-        .improvement-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
+        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-weight: bold; }
+        .badge { padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; }
+        .badge-pending { background: #ffedd5; color: #ea580c; }
+        .badge-approved { background: #dcfce7; color: #16a34a; }
+        .card-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 10px 0; font-size: 13px; }
+        .card-actions { display: flex; gap: 10px; margin-top: 10px; }
         
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
+        /* Footer */
+        .footer { background: #0f172a; color: white; text-align: center; padding: 20px; margin-top: 30px; border-radius: 10px 10px 0 0; }
+        .footer-logo { font-size: 20px; font-weight: bold; color: #fbbf24; margin-bottom: 5px; }
+        .footer-copyright { font-size: 13px; opacity: 0.9; }
+        .footer-tagline { font-size: 12px; opacity: 0.7; margin-top: 5px; }
         
-        @media (min-width: 640px) {
-            .card-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: start;
-            }
-        }
-        
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .status-badge {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            display: inline-block;
-            align-self: flex-start;
-        }
-        
-        .status-pending {
-            background: #fff3e0;
-            color: #e65100;
-        }
-        
-        .status-approved {
-            background: #e8f5e8;
-            color: #2e7d32;
-        }
-        
-        .status-rejected {
-            background: #ffebee;
-            color: #c62828;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .flex {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        @media (min-width: 640px) {
-            .flex {
-                flex-direction: row;
-                gap: 10px;
-            }
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #757575;
-        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>Continuous Improvement Monitoring System</h1>
-            <span class="demo-badge">DEMO VERSION</span>
+            <h1>Continuous Improvement System</h1>
+            <span class="badge">PRIMA+ COURSE</span>
         </div>
 
         <!-- Manual Book -->
-        <div class="manual-book">
-            <div class="manual-title">
-                <span>📘</span>
-                <h2>Manual Book & Role Guidelines</h2>
-            </div>
-            
-            <div class="role-cards">
-                <!-- Staff Card -->
-                <div class="role-card staff">
-                    <div class="role-header">
-                        <span class="role-icon">👷</span>
-                        <span class="role-name staff">STAFF</span>
-                    </div>
+        <div class="manual">
+            <h3>📘 MANUAL BOOK & ROLE GUIDELINES</h3>
+            <div class="role-grid">
+                <div class="role-card">
+                    <div class="role-header staff">👷 STAFF</div>
                     <div class="role-body">
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Membuat improvement baru</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Upload foto before & after</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Menyimpan draft improvement</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Melihat improvement sendiri</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-uncheck">❌</span>
-                            <span>Tidak bisa approval</span>
-                        </div>
+                        <div class="feature"><span class="check">✅</span> Membuat improvement</div>
+                        <div class="feature"><span class="check">✅</span> Upload foto before/after</div>
+                        <div class="feature"><span class="check">✅</span> Simpan draft</div>
+                        <div class="feature"><span class="uncheck">❌</span> Tidak bisa approval</div>
                     </div>
                 </div>
-
-                <!-- Manager Card -->
-                <div class="role-card manager">
-                    <div class="role-header">
-                        <span class="role-icon">👔</span>
-                        <span class="role-name manager">MANAGER</span>
-                    </div>
+                <div class="role-card">
+                    <div class="role-header manager">👔 MANAGER</div>
                     <div class="role-body">
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Approval level 1 (pending)</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Melihat semua improvement</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Memberi komentar approval</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-uncheck">❌</span>
-                            <span>Tidak bisa membuat improvement</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-uncheck">❌</span>
-                            <span>Tidak bisa approval level 2</span>
-                        </div>
+                        <div class="feature"><span class="check">✅</span> Approval level 1</div>
+                        <div class="feature"><span class="check">✅</span> Lihat semua improvement</div>
+                        <div class="feature"><span class="uncheck">❌</span> Tidak bisa create</div>
                     </div>
                 </div>
-
-                <!-- Director Card -->
-                <div class="role-card director">
-                    <div class="role-header">
-                        <span class="role-icon">👨‍💼</span>
-                        <span class="role-name director">DIRECTOR</span>
-                    </div>
+                <div class="role-card">
+                    <div class="role-header director">👨‍💼 DIRECTOR</div>
                     <div class="role-body">
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Approval level 2 (final)</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Melihat semua improvement</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Melihat statistik pencapaian</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-check">✅</span>
-                            <span>Monitoring cost saving</span>
-                        </div>
-                        <div class="role-feature">
-                            <span class="feature-uncheck">❌</span>
-                            <span>Tidak bisa membuat improvement</span>
-                        </div>
+                        <div class="feature"><span class="check">✅</span> Approval level 2</div>
+                        <div class="feature"><span class="check">✅</span> Lihat statistik</div>
+                        <div class="feature"><span class="uncheck">❌</span> Tidak bisa create</div>
                     </div>
                 </div>
-            </div>
-            
-            <div style="font-size: 0.8rem; color: #666; text-align: center; padding-top: 10px; border-top: 1px dashed #e0e0e0;">
-                <strong>Alur Approval:</strong> Staff membuat improvement → Manager approve level 1 → Director approve level 2
             </div>
         </div>
 
         <!-- Login Section -->
-        <div id="loginSection" class="login-container">
+        <div id="loginSection">
             <div class="login-box">
-                <div class="login-header">
-                    <h2>Login ke Sistem</h2>
-                </div>
+                <div class="login-header"><h2>LOGIN</h2></div>
                 <div class="login-body">
-                    <div class="info-box">
-                        <strong>🔐 Demo Credentials:</strong><br>
-                        Staff: staff@demo.com / staff123<br>
-                        Manager: manager@demo.com / manager123<br>
-                        Director: director@demo.com / director123
+                    <div class="info">
+                        <strong>AKUN DEMO:</strong><br>
+                        Staff: staff@demo.com / 123<br>
+                        Manager: manager@demo.com / 123<br>
+                        Director: director@demo.com / 123
                     </div>
-
                     <form id="loginForm">
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" id="email" class="form-control" value="staff@demo.com" required>
+                            <input type="email" id="email" class="form-control" value="staff@demo.com">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" id="password" class="form-control" value="staff123" required>
+                            <input type="password" id="password" class="form-control" value="123">
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                        <button type="submit" class="btn btn-primary">LOGIN</button>
                     </form>
-
-                    <div class="role-buttons">
-                        <button type="button" class="role-btn staff" onclick="fillLogin('staff@demo.com', 'staff123')">👷 Staff</button>
-                        <button type="button" class="role-btn manager" onclick="fillLogin('manager@demo.com', 'manager123')">👔 Manager</button>
-                        <button type="button" class="role-btn director" onclick="fillLogin('director@demo.com', 'director123')">👨‍💼 Director</button>
+                    <div class="role-login">
+                        <button class="role-btn" onclick="setLogin('staff@demo.com','123')">👷 Staff</button>
+                        <button class="role-btn" onclick="setLogin('manager@demo.com','123')">👔 Manager</button>
+                        <button class="role-btn" onclick="setLogin('director@demo.com','123')">👨‍💼 Director</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard Section -->
+        <!-- Dashboard -->
         <div id="dashboardSection" class="dashboard hidden">
-            <!-- User Info -->
             <div class="user-info">
                 <div class="user-detail">
                     <span class="user-name" id="userName"></span>
@@ -811,206 +167,80 @@
                 <button onclick="logout()" class="btn btn-danger btn-small">Logout</button>
             </div>
 
-            <!-- Create Button (HIDDEN FOR DIRECTOR) -->
-            <div id="createButtonContainer">
-                <button onclick="showCreateForm()" class="btn btn-success" style="width: 100%; margin-bottom: 20px;">
-                    + Buat Improvement Baru
+            <div id="createBtn">
+                <button onclick="createImprovement()" class="btn btn-success" style="width:100%;margin-bottom:20px;">
+                    + BUAT IMPROVEMENT
                 </button>
             </div>
 
-            <!-- Director Statistics (only for director) -->
             <div id="directorStats" class="hidden">
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <div class="stat-value" id="totalImprovements">0</div>
-                        <div class="stat-label">Total Improvement</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="pendingImprovements">0</div>
-                        <div class="stat-label">Pending</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="approvedImprovements">0</div>
-                        <div class="stat-label">Approved</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="totalCostSaving">Rp 0</div>
-                        <div class="stat-label">Total Cost Saving</div>
-                    </div>
-                </div>
-
-                <div class="achievement-chart">
-                    <h4 style="margin-bottom: 10px;">Pencapaian per Bulan</h4>
-                    <div class="chart-bar">
-                        <span class="chart-label">Jan 2026</span>
-                        <div class="bar-container">
-                            <div class="bar-fill" style="width: 75%;"></div>
-                        </div>
-                        <span>Rp 75jt</span>
-                    </div>
-                    <div class="chart-bar">
-                        <span class="chart-label">Feb 2026</span>
-                        <div class="bar-container">
-                            <div class="bar-fill" style="width: 82%;"></div>
-                        </div>
-                        <span>Rp 82jt</span>
-                    </div>
-                    <div class="chart-bar">
-                        <span class="chart-label">Mar 2026</span>
-                        <div class="bar-container">
-                            <div class="bar-fill" style="width: 68%;"></div>
-                        </div>
-                        <span>Rp 68jt</span>
-                    </div>
+                <div class="stats">
+                    <div class="stat-card"><div class="stat-value">15</div><div>Total</div></div>
+                    <div class="stat-card"><div class="stat-value">5</div><div>Pending</div></div>
+                    <div class="stat-card"><div class="stat-value">8</div><div>Approved</div></div>
+                    <div class="stat-card"><div class="stat-value">Rp150jt</div><div>Saving</div></div>
                 </div>
             </div>
 
-            <!-- Tabs -->
             <div class="tabs">
-                <button class="tab active" id="pendingTab" onclick="loadData('pending')">Pending Approval</button>
-                <button class="tab" id="myTab" onclick="loadData('my')">Improvement Saya</button>
-                <button class="tab" id="allTab" onclick="loadData('all')">Semua Improvement</button>
+                <button class="tab active" onclick="loadData('pending')">Pending</button>
+                <button class="tab" onclick="loadData('my')">Punya Saya</button>
+                <button class="tab" onclick="loadData('all')">Semua</button>
             </div>
 
-            <!-- Improvements List -->
             <div id="improvementsList"></div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">PRIMA+ · COURSE</div>
-            <div class="footer-copyright">created by PRIMA+ COURSE © 2026</div>
-            <div class="footer-tagline">People Resource · Innovation & Mastery</div>
-        </div>
+        <div class="footer-logo">PRIMA+ · COURSE</div>
+        <div class="footer-copyright">created by PRIMA+ COURSE © 2026</div>
+        <div class="footer-tagline">People Resource · Innovation & Mastery</div>
     </footer>
 
     <script>
-        // ==================== DATA STORE ====================
         let currentUser = null;
-        let currentImprovementId = null;
         
-        let improvements = [
-            {
-                id: '1',
-                title: 'Optimasi Proses Produksi',
-                problem: 'Mesin sering idle dan banyak waktu tunggu antar proses',
-                solution: 'Re-layout production line dan implementasi sistem kanban',
-                cost: 5000000,
-                costDetails: 'Biaya konsultan: Rp 3.000.000, Material: Rp 2.000.000',
-                saving: 15000000,
-                savingDetails: 'Efisiensi waktu 20% = Rp 10.000.000/bulan, Reduksi waste = Rp 5.000.000/bulan',
-                proposerId: 'staff1',
-                proposerName: 'Staff Demo',
-                proposerRole: 'staff',
-                status: 'pending',
-                currentLevel: 1,
-                maxLevel: 2,
-                createdAt: new Date().toISOString(),
-                photoBefore: null,
-                photoAfter: null
-            },
-            {
-                id: '2',
-                title: 'Reduksi Waste Material',
-                problem: 'Scrap rate tinggi mencapai 15%',
-                solution: 'Implementasi metode lean manufacturing dan training operator',
-                cost: 2000000,
-                costDetails: 'Training: Rp 1.500.000, Tools: Rp 500.000',
-                saving: 8000000,
-                savingDetails: 'Scrap turun 10% = Rp 8.000.000/bulan',
-                proposerId: 'staff1',
-                proposerName: 'Staff Demo',
-                proposerRole: 'staff',
-                status: 'approved',
-                currentLevel: 2,
-                maxLevel: 2,
-                createdAt: new Date(Date.now() - 86400000).toISOString(),
-                photoBefore: null,
-                photoAfter: null
-            },
-            {
-                id: '3',
-                title: 'Program Safety Training',
-                problem: 'Tingkat kecelakaan kerja masih tinggi',
-                solution: 'Pelatihan K3 untuk seluruh karyawan',
-                cost: 3000000,
-                costDetails: 'Training: Rp 2.000.000, Sertifikasi: Rp 1.000.000',
-                saving: 12000000,
-                savingDetails: 'Reduksi biaya pengobatan: Rp 12.000.000/tahun',
-                proposerId: 'manager1',
-                proposerName: 'Manager Demo',
-                proposerRole: 'manager',
-                status: 'pending',
-                currentLevel: 2,
-                maxLevel: 2,
-                createdAt: new Date(Date.now() - 172800000).toISOString(),
-                photoBefore: null,
-                photoAfter: null
-            }
+        const improvements = [
+            { id:1, title:'Optimasi Produksi', problem:'Mesin idle', cost:5000000, saving:15000000, status:'pending', level:1, creator:'staff1', creatorName:'Staff Demo' },
+            { id:2, title:'Reduksi Waste', problem:'Scrap tinggi', cost:2000000, saving:8000000, status:'approved', level:2, creator:'staff1', creatorName:'Staff Demo' },
+            { id:3, title:'Safety Program', problem:'Kecelakaan', cost:3000000, saving:12000000, status:'pending', level:2, creator:'manager1', creatorName:'Manager Demo' }
         ];
 
-        // ==================== MONEY FUNCTIONS ====================
-        function formatRupiah(amount) {
-            if (!amount && amount !== 0) return 'Rp 0';
-            return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.';
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
 
-        // ==================== LOGIN FUNCTIONS ====================
-        window.fillLogin = function(email, password) {
+        window.setLogin = function(email, pass) {
             document.getElementById('email').value = email;
-            document.getElementById('password').value = password;
+            document.getElementById('password').value = pass;
         };
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            
+            if(email.includes('staff')) currentUser = { id:'staff1', name:'Staff Demo', role:'staff' };
+            else if(email.includes('manager')) currentUser = { id:'manager1', name:'Manager Demo', role:'manager' };
+            else if(email.includes('director')) currentUser = { id:'director1', name:'Director Demo', role:'director' };
+            else { alert('Email tidak dikenal'); return; }
 
-            if (email === 'staff@demo.com' && password === 'staff123') {
-                currentUser = {
-                    id: 'staff1',
-                    name: 'Staff Demo',
-                    role: 'staff'
-                };
-            } else if (email === 'manager@demo.com' && password === 'manager123') {
-                currentUser = {
-                    id: 'manager1',
-                    name: 'Manager Demo',
-                    role: 'manager'
-                };
-            } else if (email === 'director@demo.com' && password === 'director123') {
-                currentUser = {
-                    id: 'director1',
-                    name: 'Director Demo',
-                    role: 'director'
-                };
-            } else {
-                alert('Email atau password salah!');
-                return;
-            }
-
-            // Update UI
             document.getElementById('loginSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
             
-            document.getElementById('userName').textContent = currentUser.name;
-            const userRoleEl = document.getElementById('userRole');
-            userRoleEl.textContent = currentUser.role;
-            userRoleEl.className = 'user-role ' + currentUser.role;
-            
-            // Hide create button for director
-            if (currentUser.role === 'director') {
-                document.getElementById('createButtonContainer').classList.add('hidden');
+            document.getElementById('userName').innerText = currentUser.name;
+            const roleSpan = document.getElementById('userRole');
+            roleSpan.innerText = currentUser.role;
+            roleSpan.className = 'user-role role-' + currentUser.role;
+
+            if(currentUser.role === 'director') {
+                document.getElementById('createBtn').classList.add('hidden');
                 document.getElementById('directorStats').classList.remove('hidden');
-                updateDirectorStats();
             } else {
-                document.getElementById('createButtonContainer').classList.remove('hidden');
+                document.getElementById('createBtn').classList.remove('hidden');
                 document.getElementById('directorStats').classList.add('hidden');
             }
-            
             loadData('pending');
         });
 
@@ -1020,97 +250,53 @@
             document.getElementById('dashboardSection').classList.add('hidden');
         };
 
-        // ==================== DIRECTOR STATS ====================
-        function updateDirectorStats() {
-            const total = improvements.length;
-            const pending = improvements.filter(imp => imp.status === 'pending').length;
-            const approved = improvements.filter(imp => imp.status === 'approved').length;
-            const totalSaving = improvements.reduce((sum, imp) => sum + imp.saving, 0);
-            
-            document.getElementById('totalImprovements').textContent = total;
-            document.getElementById('pendingImprovements').textContent = pending;
-            document.getElementById('approvedImprovements').textContent = approved;
-            document.getElementById('totalCostSaving').textContent = formatRupiah(totalSaving);
-        }
-
-        // ==================== LOAD DATA ====================
-        window.loadData = function(type) {
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById(type + 'Tab').classList.add('active');
-
-            let filtered = [];
-            
-            if (type === 'my') {
-                filtered = improvements.filter(imp => imp.proposerId === currentUser.id);
-            } else if (type === 'pending') {
-                if (currentUser.role === 'manager') {
-                    filtered = improvements.filter(imp => imp.status === 'pending' && imp.currentLevel === 1);
-                } else if (currentUser.role === 'director') {
-                    filtered = improvements.filter(imp => imp.status === 'pending' && imp.currentLevel === 2);
-                } else {
-                    filtered = improvements.filter(imp => imp.status === 'pending');
-                }
-            } else {
-                filtered = improvements;
-            }
-
-            displayImprovements(filtered);
+        window.createImprovement = function() {
+            if(currentUser.role === 'director') alert('Director tidak bisa membuat improvement!');
+            else alert('Form create akan muncul di sini');
         };
 
-        function displayImprovements(items) {
+        window.loadData = function(type) {
+            let filtered = [];
+            if(type === 'my') filtered = improvements.filter(i => i.creator === currentUser.id);
+            else if(type === 'pending') {
+                if(currentUser.role === 'manager') filtered = improvements.filter(i => i.status === 'pending' && i.level === 1);
+                else if(currentUser.role === 'director') filtered = improvements.filter(i => i.status === 'pending' && i.level === 2);
+                else filtered = improvements.filter(i => i.status === 'pending');
+            } else filtered = improvements;
+
             const container = document.getElementById('improvementsList');
-            
-            if (items.length === 0) {
-                container.innerHTML = '<div class="empty-state">Tidak ada improvement ditemukan</div>';
+            if(filtered.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:40px;">Tidak ada data</div>';
                 return;
             }
 
-            container.innerHTML = items.map(item => {
-                return `
-                <div class="improvement-card">
+            container.innerHTML = filtered.map(item => `
+                <div class="card">
                     <div class="card-header">
-                        <div>
-                            <div class="card-title">${item.title}</div>
-                            <p style="color: #666; font-size: 0.8rem;">${item.problem.substring(0, 80)}...</p>
-                        </div>
-                        <span class="status-badge status-${item.status}">${item.status}</span>
+                        <span class="card-title">${item.title}</span>
+                        <span class="badge badge-${item.status}">${item.status}</span>
                     </div>
-                    
-                    <div style="margin: 10px 0; font-size: 0.85rem;">
-                        <div>💰 Biaya: ${formatRupiah(item.cost)}</div>
-                        <div>💵 Cost Saving: ${formatRupiah(item.saving)}</div>
+                    <div style="font-size:13px;margin-bottom:10px;">${item.problem}</div>
+                    <div class="card-meta">
+                        <div>💰 ${formatRupiah(item.cost)}</div>
+                        <div>💵 ${formatRupiah(item.saving)}</div>
+                        <div>📊 Level ${item.level}/2</div>
+                        <div>👤 ${item.creatorName}</div>
                     </div>
-                    
-                    <div style="display: flex; gap: 8px; margin-top: 10px;">
-                        ${canApprove(item) ? `
-                            <button onclick="alert('Fitur approval dalam pengembangan')" class="btn btn-primary btn-small" style="flex: 1;">Review</button>
-                        ` : ''}
-                        <button onclick="alert('Detail: ${item.title}')" class="btn btn-secondary btn-small" style="flex: 1;">Detail</button>
+                    <div class="card-actions">
+                        ${canApprove(item) ? '<button class="btn btn-primary btn-small" onclick="alert(\'Approval\')">Approve</button>' : ''}
+                        <button class="btn btn-small" onclick="alert(\'Detail\')">Detail</button>
                     </div>
                 </div>
-            `}).join('');
-        }
-
-        function canApprove(item) {
-            if (!currentUser || item.status !== 'pending') return false;
-            if (currentUser.role === 'manager' && item.currentLevel === 1) return true;
-            if (currentUser.role === 'director' && item.currentLevel === 2) return true;
-            return false;
-        }
-
-        // ==================== CREATE FORM ====================
-        window.showCreateForm = function() {
-            if (currentUser.role === 'director') {
-                alert('Director tidak dapat membuat improvement!');
-                return;
-            }
-            alert('Form create improvement akan muncul di sini');
+            `).join('');
         };
 
-        // Manual book tetap visible
-        // Footer tetap di bawah
+        function canApprove(item) {
+            if(!currentUser || item.status !== 'pending') return false;
+            if(currentUser.role === 'manager' && item.level === 1) return true;
+            if(currentUser.role === 'director' && item.level === 2) return true;
+            return false;
+        }
     </script>
 </body>
 </html>
