@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Continuous Improvement Monitoring - With Photos</title>
+    <title>Continuous Improvement - Complete Form</title>
     <style>
         * {
             margin: 0;
@@ -90,6 +90,11 @@
             color: #333;
         }
         
+        .form-group label .required {
+            color: #d32f2f;
+            margin-left: 4px;
+        }
+        
         .form-control {
             width: 100%;
             padding: 12px;
@@ -104,31 +109,55 @@
             border-color: #1976d2;
         }
         
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        /* Money Input */
+        .money-input {
+            position: relative;
+        }
+        
+        .money-input .prefix {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .money-input input {
+            padding-left: 40px;
+        }
+        
         /* File Upload */
         .upload-container {
             border: 2px dashed #ccc;
             border-radius: 8px;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
             margin-bottom: 15px;
+            background: #fafafa;
         }
         
         .upload-container:hover {
             border-color: #1976d2;
-            background: #f5f5f5;
+            background: #e3f2fd;
         }
         
-        .upload-container i {
-            font-size: 40px;
-            color: #757575;
+        .upload-container .camera-icon {
+            font-size: 48px;
             margin-bottom: 10px;
             display: block;
         }
         
         .upload-container p {
-            color: #757575;
+            color: #666;
+            margin-bottom: 5px;
         }
         
         .upload-container small {
@@ -145,28 +174,29 @@
         
         .preview-item {
             flex: 1;
-            min-width: 200px;
+            min-width: 250px;
             border: 1px solid #e0e0e0;
             border-radius: 6px;
             overflow: hidden;
+            background: white;
         }
         
         .preview-item .preview-label {
             background: #f5f5f5;
-            padding: 8px;
+            padding: 10px;
             font-weight: 500;
             border-bottom: 1px solid #e0e0e0;
         }
         
         .preview-item img {
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
             display: block;
         }
         
         .preview-item .no-image {
-            height: 150px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -178,53 +208,14 @@
             background: #dc3545;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 8px;
             width: 100%;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
         }
         
         .remove-image:hover {
             background: #c82333;
-        }
-        
-        /* Photo Gallery */
-        .photo-gallery {
-            display: flex;
-            gap: 15px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        
-        .photo-item {
-            flex: 1;
-            min-width: 200px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        
-        .photo-item .photo-label {
-            background: #f5f5f5;
-            padding: 8px;
-            font-weight: 500;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .photo-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .photo-item .no-photo {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fafafa;
-            color: #999;
         }
         
         /* Buttons */
@@ -235,7 +226,7 @@
             font-size: 15px;
             font-weight: 500;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .btn-primary {
@@ -343,15 +334,85 @@
         .create-form {
             background: #f8f9fa;
             border-radius: 8px;
-            padding: 20px;
+            padding: 25px;
             margin-bottom: 25px;
         }
         
         .create-form h3 {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #333;
+            font-size: 20px;
         }
         
+        /* Form Sections */
+        .form-section {
+            background: white;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-section h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-section h4:before {
+            content: '📋';
+            font-size: 18px;
+        }
+        
+        .form-section:nth-child(2) h4:before {
+            content: '💰';
+        }
+        
+        .form-section:nth-child(3) h4:before {
+            content: '📸';
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Photo Gallery in Cards */
+        .photo-gallery {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .photo-item {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .photo-item .photo-label {
+            background: #f5f5f5;
+            padding: 8px;
+            font-weight: 500;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+        
+        /* Tabs */
         .tabs {
             display: flex;
             gap: 5px;
@@ -412,12 +473,6 @@
             margin-bottom: 8px;
         }
         
-        .card-desc {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        
         .status-badge {
             padding: 5px 12px;
             border-radius: 20px;
@@ -462,6 +517,33 @@
             margin-bottom: 5px;
         }
         
+        .cost-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #dee2e6;
+        }
+        
+        .cost-row:last-child {
+            border-bottom: none;
+        }
+        
+        .cost-label {
+            color: #666;
+        }
+        
+        .cost-value {
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        
         /* Modal */
         .modal {
             position: fixed;
@@ -480,7 +562,7 @@
             background: white;
             border-radius: 8px;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -489,6 +571,8 @@
             background: #f8f9fa;
             padding: 20px;
             border-bottom: 1px solid #dee2e6;
+            position: sticky;
+            top: 0;
         }
         
         .modal-header h3 {
@@ -509,13 +593,13 @@
         
         .info-display {
             background: #f5f5f5;
-            padding: 15px;
+            padding: 20px;
             border-radius: 6px;
             margin-bottom: 20px;
         }
         
         .info-display p {
-            margin: 5px 0;
+            margin: 10px 0;
             color: #333;
         }
         
@@ -526,11 +610,12 @@
         .flex {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .empty-state {
             text-align: center;
-            padding: 40px;
+            padding: 60px 40px;
             color: #757575;
             font-size: 16px;
         }
@@ -552,7 +637,7 @@
                 </div>
                 <div class="login-body">
                     <div class="info-box">
-                        <strong>🔐 Demo Credentials:</strong>
+                        <strong>🔐 Demo Credentials:</strong><br>
                         Staff: staff@demo.com / staff123<br>
                         Manager: manager@demo.com / manager123<br>
                         Director: director@demo.com / director123
@@ -567,7 +652,7 @@
                             <label>Password</label>
                             <input type="password" id="password" class="form-control" value="staff123" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
                     </form>
 
                     <div class="role-buttons">
@@ -597,54 +682,93 @@
 
             <!-- Create Form -->
             <div id="createForm" class="create-form hidden">
-                <h3>Buat Improvement Baru</h3>
+                <h3>Form Improvement Baru</h3>
                 <form id="improvementForm">
-                    <div class="form-group">
-                        <label>Judul Improvement</label>
-                        <input type="text" id="title" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea id="description" class="form-control" rows="4" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Kategori</label>
-                        <select id="category" class="form-control">
-                            <option value="process">Process Improvement</option>
-                            <option value="quality">Quality Improvement</option>
-                            <option value="cost">Cost Reduction</option>
-                            <option value="safety">Safety</option>
-                        </select>
+                    <!-- Section 1: Identifikasi Masalah -->
+                    <div class="form-section">
+                        <h4>Identifikasi Masalah</h4>
+                        
+                        <div class="form-group">
+                            <label>Judul Improvement <span class="required">*</span></label>
+                            <input type="text" id="title" class="form-control" placeholder="Contoh: Optimasi Proses Produksi" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Permasalahan yang Ada <span class="required">*</span></label>
+                            <textarea id="problem" class="form-control" placeholder="Deskripsikan permasalahan yang ditemukan..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Penanggulangan <span class="required">*</span></label>
+                            <textarea id="solution" class="form-control" placeholder="Jelaskan bagaimana cara menanggulangi masalah..." required></textarea>
+                        </div>
                     </div>
 
-                    <!-- Upload Foto Before -->
-                    <div class="form-group">
-                        <label>Foto Before (Kondisi Awal)</label>
-                        <div class="upload-container" onclick="document.getElementById('fileBefore').click()">
-                            <i>📸</i>
-                            <p>Klik untuk upload foto before</p>
-                            <small>Format: JPG, PNG (Max 5MB)</small>
+                    <!-- Section 2: Biaya dan Cost Saving -->
+                    <div class="form-section">
+                        <h4>Biaya & Cost Saving</h4>
+                        
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Biaya Penanggulangan <span class="required">*</span></label>
+                                <div class="money-input">
+                                    <span class="prefix">Rp</span>
+                                    <input type="number" id="cost" class="form-control" placeholder="0" min="0" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Cost Saving <span class="required">*</span></label>
+                                <div class="money-input">
+                                    <span class="prefix">Rp</span>
+                                    <input type="number" id="saving" class="form-control" placeholder="0" min="0" required>
+                                </div>
+                            </div>
                         </div>
-                        <input type="file" id="fileBefore" accept="image/*" class="hidden" onchange="previewBefore(event)">
-                        <div id="previewBefore" class="preview-container"></div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Rincian Biaya Penanggulangan <span class="required">*</span></label>
+                            <textarea id="costDetails" class="form-control" placeholder="Rincikan biaya-biaya yang diperlukan..." rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jelaskan Cost Saving <span class="required">*</span></label>
+                            <textarea id="savingDetails" class="form-control" placeholder="Jelaskan bagaimana cost saving bisa tercapai..." rows="3" required></textarea>
+                        </div>
                     </div>
 
-                    <!-- Upload Foto After -->
-                    <div class="form-group">
-                        <label>Foto After (Kondisi Setelah Improvement)</label>
-                        <div class="upload-container" onclick="document.getElementById('fileAfter').click()">
-                            <i>📸</i>
-                            <p>Klik untuk upload foto after</p>
-                            <small>Format: JPG, PNG (Max 5MB)</small>
+                    <!-- Section 3: Dokumentasi Foto -->
+                    <div class="form-section">
+                        <h4>Dokumentasi Foto</h4>
+                        
+                        <!-- Upload Foto Before -->
+                        <div class="form-group">
+                            <label>Foto Before (Kondisi Awal) <span class="required">*</span></label>
+                            <div class="upload-container" onclick="document.getElementById('fileBefore').click()">
+                                <span class="camera-icon">📸</span>
+                                <p>Klik untuk upload foto atau gunakan kamera</p>
+                                <small>Format: JPG, PNG (Max 5MB)</small>
+                            </div>
+                            <input type="file" id="fileBefore" accept="image/*" capture="environment" class="hidden" onchange="previewBefore(event)">
+                            <div id="previewBefore" class="preview-container"></div>
                         </div>
-                        <input type="file" id="fileAfter" accept="image/*" class="hidden" onchange="previewAfter(event)">
-                        <div id="previewAfter" class="preview-container"></div>
+
+                        <!-- Upload Foto After -->
+                        <div class="form-group">
+                            <label>Foto After (Kondisi Setelah Improvement) <span class="required">*</span></label>
+                            <div class="upload-container" onclick="document.getElementById('fileAfter').click()">
+                                <span class="camera-icon">📸</span>
+                                <p>Klik untuk upload foto atau gunakan kamera</p>
+                                <small>Format: JPG, PNG (Max 5MB)</small>
+                            </div>
+                            <input type="file" id="fileAfter" accept="image/*" capture="environment" class="hidden" onchange="previewAfter(event)">
+                            <div id="previewAfter" class="preview-container"></div>
+                        </div>
                     </div>
-                    
-                    <div class="flex">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <!-- Form Actions -->
+                    <div class="flex" style="justify-content: flex-end; margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary">Submit Improvement</button>
                         <button type="button" onclick="hideCreateForm()" class="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
@@ -701,8 +825,9 @@
                 <h3>Detail Improvement</h3>
             </div>
             <div class="modal-body">
-                <div id="detailInfo"></div>
+                <div id="detailInfo" class="info-display"></div>
                 <div id="detailPhotos" class="photo-gallery"></div>
+                <div id="detailCost" class="cost-info"></div>
             </div>
             <div class="modal-footer">
                 <button onclick="closeDetailModal()" class="btn btn-primary">Close</button>
@@ -719,7 +844,12 @@
             {
                 id: '1',
                 title: 'Optimasi Proses Produksi',
-                description: 'Mengusulkan perubahan layout produksi untuk efisiensi 20%',
+                problem: 'Mesin sering idle dan banyak waktu tunggu antar proses',
+                solution: 'Re-layout production line dan implementasi sistem kanban',
+                cost: 5000000,
+                costDetails: 'Biaya konsultan: Rp 3.000.000, Material: Rp 2.000.000',
+                saving: 15000000,
+                savingDetails: 'Efisiensi waktu 20% = Rp 10.000.000/bulan, Reduksi waste = Rp 5.000.000/bulan',
                 category: 'process',
                 proposerId: 'staff1',
                 proposerName: 'Staff Demo',
@@ -734,7 +864,12 @@
             {
                 id: '2',
                 title: 'Reduksi Waste Material',
-                description: 'Implementasi metode lean manufacturing untuk mengurangi scrap',
+                problem: 'Scrap rate tinggi mencapai 15%',
+                solution: 'Implementasi metode lean manufacturing dan training operator',
+                cost: 2000000,
+                costDetails: 'Training: Rp 1.500.000, Tools: Rp 500.000',
+                saving: 8000000,
+                savingDetails: 'Scrap turun 10% = Rp 8.000.000/bulan',
                 category: 'cost',
                 proposerId: 'staff1',
                 proposerName: 'Staff Demo',
@@ -743,21 +878,6 @@
                 currentLevel: 2,
                 maxLevel: 2,
                 createdAt: new Date(Date.now() - 86400000).toISOString(),
-                photoBefore: null,
-                photoAfter: null
-            },
-            {
-                id: '3',
-                title: 'Program Safety Training',
-                description: 'Pelatihan K3 untuk seluruh karyawan',
-                category: 'safety',
-                proposerId: 'manager1',
-                proposerName: 'Manager Demo',
-                proposerRole: 'manager',
-                status: 'pending',
-                currentLevel: 2,
-                maxLevel: 2,
-                createdAt: new Date(Date.now() - 172800000).toISOString(),
                 photoBefore: null,
                 photoAfter: null
             }
@@ -784,7 +904,7 @@
                         <div class="preview-item">
                             <div class="preview-label">Foto Before</div>
                             <img src="${e.target.result}" alt="Preview Before">
-                            <button type="button" class="remove-image" onclick="removeBefore()">Hapus</button>
+                            <button type="button" class="remove-image" onclick="removeBefore()">Hapus Foto</button>
                         </div>
                     `;
                 };
@@ -802,7 +922,7 @@
                         <div class="preview-item">
                             <div class="preview-label">Foto After</div>
                             <img src="${e.target.result}" alt="Preview After">
-                            <button type="button" class="remove-image" onclick="removeAfter()">Hapus</button>
+                            <button type="button" class="remove-image" onclick="removeAfter()">Hapus Foto</button>
                         </div>
                     `;
                 };
@@ -873,20 +993,36 @@
         document.getElementById('improvementForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Get form values
             const title = document.getElementById('title').value;
-            const description = document.getElementById('description').value;
-            const category = document.getElementById('category').value;
+            const problem = document.getElementById('problem').value;
+            const solution = document.getElementById('solution').value;
+            const cost = parseFloat(document.getElementById('cost').value) || 0;
+            const costDetails = document.getElementById('costDetails').value;
+            const saving = parseFloat(document.getElementById('saving').value) || 0;
+            const savingDetails = document.getElementById('savingDetails').value;
 
-            if (!title || !description) {
-                alert('Judul dan deskripsi harus diisi!');
+            // Validation
+            if (!title || !problem || !solution || !cost || !costDetails || !saving || !savingDetails) {
+                alert('Semua field harus diisi!');
+                return;
+            }
+
+            if (!photoBeforeData || !photoAfterData) {
+                alert('Foto before dan after harus diupload!');
                 return;
             }
 
             const newImprovement = {
                 id: Date.now().toString(),
                 title: title,
-                description: description,
-                category: category,
+                problem: problem,
+                solution: solution,
+                cost: cost,
+                costDetails: costDetails,
+                saving: saving,
+                savingDetails: savingDetails,
+                category: document.getElementById('category').value,
                 proposerId: currentUser.id,
                 proposerName: currentUser.name,
                 proposerRole: currentUser.role,
@@ -948,6 +1084,10 @@
             displayImprovements(filtered);
         };
 
+        function formatRupiah(amount) {
+            return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
         function displayImprovements(items) {
             const container = document.getElementById('improvementsList');
             
@@ -964,27 +1104,38 @@
                     <div class="card-header">
                         <div>
                             <div class="card-title">${item.title}</div>
-                            <div class="card-desc">${item.description}</div>
+                            <p style="color: #666;">${item.problem}</p>
                         </div>
                         <span class="status-badge status-${item.status}">${item.status}</span>
                     </div>
                     
                     ${hasPhotos ? `
-                        <div class="photo-gallery" style="margin-bottom: 15px;">
+                        <div class="photo-gallery">
                             ${item.photoBefore ? `
                                 <div class="photo-item">
                                     <div class="photo-label">Before</div>
-                                    <img src="${item.photoBefore}" alt="Before" onclick="openDetail('${item.id}')" style="cursor: pointer;">
+                                    <img src="${item.photoBefore}" alt="Before" onclick="openDetail('${item.id}')">
                                 </div>
                             ` : ''}
                             ${item.photoAfter ? `
                                 <div class="photo-item">
                                     <div class="photo-label">After</div>
-                                    <img src="${item.photoAfter}" alt="After" onclick="openDetail('${item.id}')" style="cursor: pointer;">
+                                    <img src="${item.photoAfter}" alt="After" onclick="openDetail('${item.id}')">
                                 </div>
                             ` : ''}
                         </div>
                     ` : ''}
+                    
+                    <div class="cost-info">
+                        <div class="cost-row">
+                            <span class="cost-label">Biaya Penanggulangan:</span>
+                            <span class="cost-value">${formatRupiah(item.cost)}</span>
+                        </div>
+                        <div class="cost-row">
+                            <span class="cost-label">Cost Saving:</span>
+                            <span class="cost-value">${formatRupiah(item.saving)}</span>
+                        </div>
+                    </div>
                     
                     <div class="card-meta">
                         <div class="meta-item">
@@ -1031,13 +1182,9 @@
             const item = improvements.find(i => i.id === id);
             
             document.getElementById('detailInfo').innerHTML = `
-                <h4 style="margin-bottom: 10px;">${item.title}</h4>
-                <p style="margin-bottom: 10px;">${item.description}</p>
-                <p><strong>Kategori:</strong> ${item.category}</p>
-                <p><strong>Status:</strong> ${item.status}</p>
-                <p><strong>Level:</strong> ${item.currentLevel}/${item.maxLevel}</p>
-                <p><strong>Dibuat oleh:</strong> ${item.proposerName}</p>
-                <p><strong>Tanggal:</strong> ${new Date(item.createdAt).toLocaleDateString('id-ID')}</p>
+                <h4 style="margin-bottom: 15px;">${item.title}</h4>
+                <p><strong>Permasalahan:</strong><br>${item.problem}</p>
+                <p><strong>Penanggulangan:</strong><br>${item.solution}</p>
             `;
             
             document.getElementById('detailPhotos').innerHTML = `
@@ -1053,7 +1200,26 @@
                         <img src="${item.photoAfter}" alt="After">
                     </div>
                 ` : ''}
-                ${!item.photoBefore && !item.photoAfter ? '<p class="text-center" style="color: #999;">Tidak ada foto</p>' : ''}
+            `;
+            
+            document.getElementById('detailCost').innerHTML = `
+                <h4 style="margin-bottom: 10px;">Rincian Biaya & Cost Saving</h4>
+                <div class="cost-row">
+                    <span class="cost-label">Biaya Penanggulangan:</span>
+                    <span class="cost-value">${formatRupiah(item.cost)}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Rincian Biaya:</span>
+                    <span>${item.costDetails}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Cost Saving:</span>
+                    <span class="cost-value">${formatRupiah(item.saving)}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Rincian Cost Saving:</span>
+                    <span>${item.savingDetails}</span>
+                </div>
             `;
             
             document.getElementById('detailModal').classList.remove('hidden');
@@ -1070,6 +1236,8 @@
             
             document.getElementById('modalInfo').innerHTML = `
                 <p><strong>Judul:</strong> ${item.title}</p>
+                <p><strong>Biaya:</strong> ${formatRupiah(item.cost)}</p>
+                <p><strong>Cost Saving:</strong> ${formatRupiah(item.saving)}</p>
                 <p><strong>Level Saat Ini:</strong> ${item.currentLevel}/${item.maxLevel}</p>
             `;
             
