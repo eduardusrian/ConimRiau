@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Continuous Improvement - With Draft Feature</title>
+    <title>Continuous Improvement - With Manual Book & Footer</title>
     <style>
         * {
             margin: 0;
@@ -15,6 +15,8 @@
         body {
             background: #f5f5f5;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .container {
@@ -22,6 +24,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 10px;
+            flex: 1;
         }
         
         @media (min-width: 640px) {
@@ -35,13 +38,12 @@
             background: #1976d2;
             color: white;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 8px 8px 0 0;
             display: flex;
             flex-direction: column;
             gap: 10px;
             align-items: center;
             text-align: center;
-            margin-bottom: 15px;
         }
         
         @media (min-width: 480px) {
@@ -73,12 +75,120 @@
             white-space: nowrap;
         }
         
+        /* Manual Book */
+        .manual-book {
+            background: white;
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1976d2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .manual-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #1976d2;
+        }
+        
+        .manual-title h2 {
+            font-size: 1.1rem;
+        }
+        
+        .role-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        @media (min-width: 640px) {
+            .role-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .role-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .role-card.staff {
+            border-top: 4px solid #2e7d32;
+        }
+        
+        .role-card.manager {
+            border-top: 4px solid #ed6c02;
+        }
+        
+        .role-card.director {
+            border-top: 4px solid #1976d2;
+        }
+        
+        .role-header {
+            padding: 12px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .role-icon {
+            font-size: 1.5rem;
+        }
+        
+        .role-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .role-name.staff {
+            color: #2e7d32;
+        }
+        
+        .role-name.manager {
+            color: #ed6c02;
+        }
+        
+        .role-name.director {
+            color: #1976d2;
+        }
+        
+        .role-body {
+            padding: 12px;
+        }
+        
+        .role-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 0.85rem;
+        }
+        
+        .feature-check {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        .feature-uncheck {
+            color: #d32f2f;
+        }
+        
         /* Login Box */
         .login-container {
-            width: 100%;
             max-width: 450px;
             margin: 20px auto;
-            padding: 0 10px;
         }
         
         .login-box {
@@ -104,12 +214,6 @@
             padding: 20px;
         }
         
-        @media (min-width: 768px) {
-            .login-body {
-                padding: 30px;
-            }
-        }
-        
         .info-box {
             background: #e3f2fd;
             border: 1px solid #90caf9;
@@ -125,12 +229,6 @@
             margin-bottom: 15px;
         }
         
-        @media (min-width: 768px) {
-            .form-group {
-                margin-bottom: 20px;
-            }
-        }
-        
         .form-group label {
             display: block;
             margin-bottom: 6px;
@@ -144,13 +242,6 @@
             margin-left: 4px;
         }
         
-        .form-group label .optional {
-            color: #757575;
-            margin-left: 4px;
-            font-size: 0.8rem;
-            font-weight: normal;
-        }
-        
         .form-control {
             width: 100%;
             padding: 10px 12px;
@@ -158,175 +249,11 @@
             border-radius: 8px;
             font-size: 0.95rem;
             transition: border-color 0.3s;
-            -webkit-appearance: none;
-            appearance: none;
         }
         
         .form-control:focus {
             outline: none;
             border-color: #1976d2;
-        }
-        
-        textarea.form-control {
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        /* Money Input */
-        .money-input {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        
-        .money-input .prefix {
-            position: absolute;
-            left: 12px;
-            color: #666;
-            font-weight: 500;
-            z-index: 1;
-            font-size: 0.9rem;
-        }
-        
-        .money-input input {
-            padding-left: 40px;
-            width: 100%;
-            text-align: right;
-            font-weight: 500;
-        }
-        
-        .money-hint {
-            color: #999;
-            font-size: 0.7rem;
-            margin-top: 4px;
-        }
-        
-        /* File Upload */
-        .upload-container {
-            border: 2px dashed #ccc;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 10px;
-            background: #fafafa;
-        }
-        
-        @media (min-width: 768px) {
-            .upload-container {
-                padding: 20px;
-            }
-        }
-        
-        .upload-container:hover {
-            border-color: #1976d2;
-            background: #e3f2fd;
-        }
-        
-        .upload-container .camera-icon {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-        
-        .upload-options {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .upload-option-btn {
-            flex: 1;
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            padding: 8px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        
-        .upload-option-btn:hover {
-            background: #e0e0e0;
-        }
-        
-        .preview-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        @media (min-width: 640px) {
-            .preview-container {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-        }
-        
-        .preview-item {
-            width: 100%;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            background: white;
-        }
-        
-        @media (min-width: 640px) {
-            .preview-item {
-                flex: 1;
-                min-width: 200px;
-            }
-        }
-        
-        .preview-item .preview-label {
-            background: #f5f5f5;
-            padding: 8px;
-            font-weight: 500;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .preview-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .photo-actions {
-            display: flex;
-            gap: 2px;
-        }
-        
-        .photo-action-btn {
-            background: none;
-            border: none;
-            padding: 4px 8px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            border-radius: 4px;
-        }
-        
-        .photo-action-btn:hover {
-            background: #e0e0e0;
-        }
-        
-        .remove-image {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 0.8rem;
         }
         
         /* Buttons */
@@ -363,15 +290,6 @@
             background: #1b5e20;
         }
         
-        .btn-warning {
-            background: #ed6c02;
-            color: white;
-        }
-        
-        .btn-warning:hover {
-            background: #b85c00;
-        }
-        
         .btn-danger {
             background: #d32f2f;
             color: white;
@@ -388,16 +306,6 @@
         
         .btn-secondary:hover {
             background: #616161;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #1976d2;
-            color: #1976d2;
-        }
-        
-        .btn-outline:hover {
-            background: #e3f2fd;
         }
         
         .btn-small {
@@ -425,18 +333,28 @@
             min-width: 80px;
         }
         
+        .role-btn.staff:hover {
+            background: #c8e6c9;
+            border-color: #2e7d32;
+        }
+        
+        .role-btn.manager:hover {
+            background: #fff3e0;
+            border-color: #ed6c02;
+        }
+        
+        .role-btn.director:hover {
+            background: #e3f2fd;
+            border-color: #1976d2;
+        }
+        
         /* Dashboard */
         .dashboard {
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             padding: 15px;
-        }
-        
-        @media (min-width: 768px) {
-            .dashboard {
-                padding: 25px;
-            }
+            margin-bottom: 20px;
         }
         
         .user-info {
@@ -480,8 +398,6 @@
         }
         
         .user-role {
-            background: #e3f2fd;
-            color: #1976d2;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -490,202 +406,19 @@
             align-self: flex-start;
         }
         
-        /* Draft Alert */
-        .draft-alert {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        @media (min-width: 640px) {
-            .draft-alert {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-        
-        .draft-alert p {
-            color: #856404;
-            font-size: 0.9rem;
-        }
-        
-        .draft-actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        /* Create Form */
-        .create-form {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        @media (min-width: 768px) {
-            .create-form {
-                padding: 25px;
-            }
-        }
-        
-        .create-form h3 {
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .form-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 20px;
-        }
-        
-        @media (min-width: 640px) {
-            .form-actions {
-                flex-direction: row;
-                justify-content: flex-end;
-            }
-        }
-        
-        /* Form Sections */
-        .form-section {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .form-section h4 {
-            color: #1976d2;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .section-status {
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            background: #e0e0e0;
-            color: #666;
-            margin-left: 8px;
-        }
-        
-        .section-status.completed {
+        .user-role.staff {
             background: #c8e6c9;
             color: #2e7d32;
         }
         
-        .row {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .user-role.manager {
+            background: #fff3e0;
+            color: #ed6c02;
         }
         
-        @media (min-width: 768px) {
-            .row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-        }
-        
-        /* Drafts List */
-        .drafts-list {
-            margin-bottom: 20px;
-        }
-        
-        .draft-item {
-            background: #fff8e1;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        @media (min-width: 640px) {
-            .draft-item {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-        
-        .draft-info h5 {
-            font-size: 0.95rem;
-            color: #856404;
-            margin-bottom: 4px;
-        }
-        
-        .draft-info p {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .draft-item-actions {
-            display: flex;
-            gap: 6px;
-        }
-        
-        /* Photo Gallery */
-        .photo-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        
-        @media (min-width: 640px) {
-            .photo-gallery {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-        }
-        
-        .photo-item {
-            width: 100%;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        @media (min-width: 640px) {
-            .photo-item {
-                flex: 1;
-                min-width: 180px;
-            }
-        }
-        
-        .photo-item .photo-label {
-            background: #f5f5f5;
-            padding: 6px;
-            font-weight: 500;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.75rem;
-        }
-        
-        .photo-item img {
-            width: 100%;
-            height: 130px;
-            object-fit: cover;
-            display: block;
-            cursor: pointer;
+        .user-role.director {
+            background: #e3f2fd;
+            color: #1976d2;
         }
         
         /* Tabs */
@@ -741,6 +474,106 @@
             }
         }
         
+        /* Director Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 640px) {
+            .stats-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .achievement-chart {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+        
+        .chart-label {
+            width: 80px;
+            font-size: 0.8rem;
+        }
+        
+        .bar-container {
+            flex: 1;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: #1976d2;
+            border-radius: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #ffc107;
+        }
+        
+        .footer-copyright {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+        
+        .footer-tagline {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+        
         /* Cards */
         .improvement-card {
             background: white;
@@ -781,11 +614,6 @@
             align-self: flex-start;
         }
         
-        .status-draft {
-            background: #fff3e0;
-            color: #ed6c02;
-        }
-        
         .status-pending {
             background: #fff3e0;
             color: #e65100;
@@ -799,117 +627,6 @@
         .status-rejected {
             background: #ffebee;
             color: #c62828;
-        }
-        
-        .card-meta {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            padding: 10px 0;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            margin: 10px 0;
-            font-size: 0.75rem;
-        }
-        
-        @media (min-width: 640px) {
-            .card-meta {
-                grid-template-columns: repeat(4, 1fr);
-                font-size: 0.8rem;
-            }
-        }
-        
-        .meta-item strong {
-            display: block;
-            color: #333;
-            font-size: 0.7rem;
-        }
-        
-        .cost-info {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 6px;
-            margin: 10px 0;
-            font-size: 0.8rem;
-        }
-        
-        .cost-row {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            padding: 4px 0;
-            border-bottom: 1px dashed #dee2e6;
-        }
-        
-        @media (min-width: 640px) {
-            .cost-row {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-        }
-        
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        @media (min-width: 640px) {
-            .modal {
-                align-items: center;
-                padding: 20px;
-            }
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 20px 20px 0 0;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        @media (min-width: 640px) {
-            .modal-content {
-                border-radius: 12px;
-                width: 90%;
-                max-width: 800px;
-            }
-        }
-        
-        .modal-header {
-            background: #f8f9fa;
-            padding: 15px;
-            border-bottom: 1px solid #dee2e6;
-            position: sticky;
-            top: 0;
-        }
-        
-        .modal-body {
-            padding: 15px;
-        }
-        
-        .modal-footer {
-            padding: 15px;
-            border-top: 1px solid #dee2e6;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        @media (min-width: 640px) {
-            .modal-footer {
-                flex-direction: row;
-                justify-content: flex-end;
-            }
         }
         
         .hidden {
@@ -934,32 +651,125 @@
             padding: 40px 20px;
             color: #757575;
         }
-        
-        .text-small {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .last-saved {
-            font-size: 0.7rem;
-            color: #999;
-            margin-top: 4px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>Continuous Improvement Monitoring</h1>
-            <span class="demo-badge">DEMO</span>
+            <h1>Continuous Improvement Monitoring System</h1>
+            <span class="demo-badge">DEMO VERSION</span>
+        </div>
+
+        <!-- Manual Book -->
+        <div class="manual-book">
+            <div class="manual-title">
+                <span>📘</span>
+                <h2>Manual Book & Role Guidelines</h2>
+            </div>
+            
+            <div class="role-cards">
+                <!-- Staff Card -->
+                <div class="role-card staff">
+                    <div class="role-header">
+                        <span class="role-icon">👷</span>
+                        <span class="role-name staff">STAFF</span>
+                    </div>
+                    <div class="role-body">
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Membuat improvement baru</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Upload foto before & after</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Menyimpan draft improvement</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Melihat improvement sendiri</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-uncheck">❌</span>
+                            <span>Tidak bisa approval</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manager Card -->
+                <div class="role-card manager">
+                    <div class="role-header">
+                        <span class="role-icon">👔</span>
+                        <span class="role-name manager">MANAGER</span>
+                    </div>
+                    <div class="role-body">
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Approval level 1 (pending)</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Melihat semua improvement</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Memberi komentar approval</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-uncheck">❌</span>
+                            <span>Tidak bisa membuat improvement</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-uncheck">❌</span>
+                            <span>Tidak bisa approval level 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Director Card -->
+                <div class="role-card director">
+                    <div class="role-header">
+                        <span class="role-icon">👨‍💼</span>
+                        <span class="role-name director">DIRECTOR</span>
+                    </div>
+                    <div class="role-body">
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Approval level 2 (final)</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Melihat semua improvement</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Melihat statistik pencapaian</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-check">✅</span>
+                            <span>Monitoring cost saving</span>
+                        </div>
+                        <div class="role-feature">
+                            <span class="feature-uncheck">❌</span>
+                            <span>Tidak bisa membuat improvement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="font-size: 0.8rem; color: #666; text-align: center; padding-top: 10px; border-top: 1px dashed #e0e0e0;">
+                <strong>Alur Approval:</strong> Staff membuat improvement → Manager approve level 1 → Director approve level 2
+            </div>
         </div>
 
         <!-- Login Section -->
         <div id="loginSection" class="login-container">
             <div class="login-box">
                 <div class="login-header">
-                    <h2>Login</h2>
+                    <h2>Login ke Sistem</h2>
                 </div>
                 <div class="login-body">
                     <div class="info-box">
@@ -982,9 +792,9 @@
                     </form>
 
                     <div class="role-buttons">
-                        <button type="button" class="role-btn" onclick="fillLogin('staff@demo.com', 'staff123')">Staff</button>
-                        <button type="button" class="role-btn" onclick="fillLogin('manager@demo.com', 'manager123')">Manager</button>
-                        <button type="button" class="role-btn" onclick="fillLogin('director@demo.com', 'director123')">Director</button>
+                        <button type="button" class="role-btn staff" onclick="fillLogin('staff@demo.com', 'staff123')">👷 Staff</button>
+                        <button type="button" class="role-btn manager" onclick="fillLogin('manager@demo.com', 'manager123')">👔 Manager</button>
+                        <button type="button" class="role-btn director" onclick="fillLogin('director@demo.com', 'director123')">👨‍💼 Director</button>
                     </div>
                 </div>
             </div>
@@ -1001,170 +811,65 @@
                 <button onclick="logout()" class="btn btn-danger btn-small">Logout</button>
             </div>
 
-            <!-- Draft Alert (shown when there's a draft) -->
-            <div id="draftAlert" class="draft-alert hidden">
-                <p>📝 Anda memiliki draft improvement yang belum selesai</p>
-                <div class="draft-actions">
-                    <button onclick="loadDraft()" class="btn btn-warning btn-small">Lanjutkan Draft</button>
-                    <button onclick="discardDraft()" class="btn btn-secondary btn-small">Hapus Draft</button>
-                </div>
+            <!-- Create Button (HIDDEN FOR DIRECTOR) -->
+            <div id="createButtonContainer">
+                <button onclick="showCreateForm()" class="btn btn-success" style="width: 100%; margin-bottom: 20px;">
+                    + Buat Improvement Baru
+                </button>
             </div>
 
-            <!-- Create Button -->
-            <button onclick="showCreateForm()" class="btn btn-success" style="width: 100%; margin-bottom: 20px;">
-                + Buat Improvement Baru
-            </button>
-
-            <!-- Create Form -->
-            <div id="createForm" class="create-form hidden">
-                <h3>
-                    Form Improvement Baru
-                    <span id="draftIndicator" class="section-status hidden">Draft Tersimpan</span>
-                </h3>
-                
-                <form id="improvementForm">
-                    <!-- Section 1: Identifikasi Masalah -->
-                    <div class="form-section">
-                        <h4>
-                            Identifikasi Masalah
-                            <span id="section1Status" class="section-status">Belum Lengkap</span>
-                        </h4>
-                        
-                        <div class="form-group">
-                            <label>Judul Improvement <span class="required">*</span></label>
-                            <input type="text" id="title" class="form-control" placeholder="Contoh: Optimasi Proses Produksi">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Jelaskan Permasalahan yang Ada <span class="required">*</span></label>
-                            <textarea id="problem" class="form-control" placeholder="Deskripsikan permasalahan yang ditemukan..." rows="3"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Jelaskan Penanggulangan <span class="required">*</span></label>
-                            <textarea id="solution" class="form-control" placeholder="Jelaskan bagaimana cara menanggulangi masalah..." rows="3"></textarea>
-                        </div>
+            <!-- Director Statistics (only for director) -->
+            <div id="directorStats" class="hidden">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalImprovements">0</div>
+                        <div class="stat-label">Total Improvement</div>
                     </div>
-
-                    <!-- Section 2: Biaya dan Cost Saving -->
-                    <div class="form-section">
-                        <h4>
-                            Biaya & Cost Saving
-                            <span id="section2Status" class="section-status">Belum Lengkap</span>
-                        </h4>
-                        
-                        <div class="row">
-                            <div class="form-group">
-                                <label>Biaya Penanggulangan <span class="required">*</span></label>
-                                <div class="money-input">
-                                    <span class="prefix">Rp</span>
-                                    <input type="text" id="cost" class="form-control money-field" placeholder="0" 
-                                           onkeyup="formatMoney(this)" 
-                                           onblur="formatMoneyOnBlur(this)" 
-                                           onfocus="this.value=this.value.replace(/\./g, '')">
-                                </div>
-                                <div class="money-hint">Contoh: 1000000 = 1.000.000</div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Cost Saving <span class="required">*</span></label>
-                                <div class="money-input">
-                                    <span class="prefix">Rp</span>
-                                    <input type="text" id="saving" class="form-control money-field" placeholder="0" 
-                                           onkeyup="formatMoney(this)" 
-                                           onblur="formatMoneyOnBlur(this)" 
-                                           onfocus="this.value=this.value.replace(/\./g, '')">
-                                </div>
-                                <div class="money-hint">Contoh: 500000 = 500.000</div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Jelaskan Rincian Biaya Penanggulangan <span class="required">*</span></label>
-                            <textarea id="costDetails" class="form-control" placeholder="Rincikan biaya-biaya yang diperlukan..." rows="2"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Jelaskan Cost Saving <span class="required">*</span></label>
-                            <textarea id="savingDetails" class="form-control" placeholder="Jelaskan bagaimana cost saving bisa tercapai..." rows="2"></textarea>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pendingImprovements">0</div>
+                        <div class="stat-label">Pending</div>
                     </div>
-
-                    <!-- Section 3: Dokumentasi Foto -->
-                    <div class="form-section">
-                        <h4>
-                            Dokumentasi Foto
-                            <span id="section3Status" class="section-status">Belum Lengkap</span>
-                        </h4>
-                        
-                        <!-- Upload Foto Before -->
-                        <div class="form-group">
-                            <label>Foto Before (Kondisi Awal) <span class="required">*</span></label>
-                            <div class="upload-container">
-                                <span class="camera-icon">📸</span>
-                                <p>Upload foto atau gunakan kamera</p>
-                                <small>Format: JPG, PNG (Max 5MB)</small>
-                                
-                                <div class="upload-options">
-                                    <button type="button" class="upload-option-btn" onclick="openCamera('before')">
-                                        📷 Kamera
-                                    </button>
-                                    <button type="button" class="upload-option-btn" onclick="openGallery('before')">
-                                        🖼️ Galeri
-                                    </button>
-                                </div>
-                            </div>
-                            <input type="file" id="fileBefore" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'before')">
-                            <input type="file" id="cameraBefore" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event, 'before')">
-                            <div id="previewBefore" class="preview-container"></div>
-                        </div>
-
-                        <!-- Upload Foto After -->
-                        <div class="form-group">
-                            <label>Foto After (Kondisi Setelah Improvement) <span class="required">*</span></label>
-                            <div class="upload-container">
-                                <span class="camera-icon">📸</span>
-                                <p>Upload foto atau gunakan kamera</p>
-                                <small>Format: JPG, PNG (Max 5MB)</small>
-                                
-                                <div class="upload-options">
-                                    <button type="button" class="upload-option-btn" onclick="openCamera('after')">
-                                        📷 Kamera
-                                    </button>
-                                    <button type="button" class="upload-option-btn" onclick="openGallery('after')">
-                                        🖼️ Galeri
-                                    </button>
-                                </div>
-                            </div>
-                            <input type="file" id="fileAfter" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'after')">
-                            <input type="file" id="cameraAfter" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event, 'after')">
-                            <div id="previewAfter" class="preview-container"></div>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="approvedImprovements">0</div>
+                        <div class="stat-label">Approved</div>
                     </div>
-
-                    <!-- Form Actions -->
-                    <div class="form-actions">
-                        <button type="button" onclick="saveDraft()" class="btn btn-outline">
-                            💾 Simpan Draft
-                        </button>
-                        <button type="button" onclick="clearForm()" class="btn btn-secondary">
-                            🗑️ Bersihkan
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            📤 Submit Improvement
-                        </button>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCostSaving">Rp 0</div>
+                        <div class="stat-label">Total Cost Saving</div>
                     </div>
-                    
-                    <div id="lastSaved" class="last-saved hidden"></div>
-                </form>
+                </div>
+
+                <div class="achievement-chart">
+                    <h4 style="margin-bottom: 10px;">Pencapaian per Bulan</h4>
+                    <div class="chart-bar">
+                        <span class="chart-label">Jan 2026</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 75%;"></div>
+                        </div>
+                        <span>Rp 75jt</span>
+                    </div>
+                    <div class="chart-bar">
+                        <span class="chart-label">Feb 2026</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 82%;"></div>
+                        </div>
+                        <span>Rp 82jt</span>
+                    </div>
+                    <div class="chart-bar">
+                        <span class="chart-label">Mar 2026</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 68%;"></div>
+                        </div>
+                        <span>Rp 68jt</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Tabs -->
             <div class="tabs">
-                <button class="tab active" id="pendingTab" onclick="loadData('pending')">Pending</button>
-                <button class="tab" id="draftTab" onclick="loadData('draft')">Draft Saya</button>
-                <button class="tab" id="myTab" onclick="loadData('my')">Saya</button>
-                <button class="tab" id="allTab" onclick="loadData('all')">Semua</button>
+                <button class="tab active" id="pendingTab" onclick="loadData('pending')">Pending Approval</button>
+                <button class="tab" id="myTab" onclick="loadData('my')">Improvement Saya</button>
+                <button class="tab" id="allTab" onclick="loadData('all')">Semua Improvement</button>
             </div>
 
             <!-- Improvements List -->
@@ -1172,76 +877,20 @@
         </div>
     </div>
 
-    <!-- Approval Modal -->
-    <div id="approvalModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Approval Improvement</h3>
-            </div>
-            <div class="modal-body">
-                <div class="info-display" id="modalInfo"></div>
-                <div id="modalPhotos" class="photo-gallery"></div>
-                
-                <div class="form-group">
-                    <label>Keputusan</label>
-                    <select id="approvalAction" class="form-control">
-                        <option value="approved">Approve</option>
-                        <option value="rejected">Reject</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Komentar</label>
-                    <textarea id="approvalComments" class="form-control" rows="3" placeholder="Tambahkan komentar..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button onclick="submitApproval()" class="btn btn-primary">Submit</button>
-                <button onclick="closeModal()" class="btn btn-secondary">Cancel</button>
-            </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">PRIMA+ · COURSE</div>
+            <div class="footer-copyright">created by PRIMA+ COURSE © 2026</div>
+            <div class="footer-tagline">People Resource · Innovation & Mastery</div>
         </div>
-    </div>
-
-    <!-- Detail Modal -->
-    <div id="detailModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Detail Improvement</h3>
-            </div>
-            <div class="modal-body">
-                <div id="detailInfo" class="info-display"></div>
-                <div id="detailPhotos" class="photo-gallery"></div>
-                <div id="detailCost" class="cost-info"></div>
-            </div>
-            <div class="modal-footer">
-                <button onclick="closeDetailModal()" class="btn btn-primary">Close</button>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script>
         // ==================== DATA STORE ====================
         let currentUser = null;
         let currentImprovementId = null;
         
-        // Auto-save draft setiap 30 detik
-        let autoSaveInterval = null;
-        
-        // Draft improvement (disimpan di localStorage)
-        let currentDraft = {
-            title: '',
-            problem: '',
-            solution: '',
-            cost: '',
-            saving: '',
-            costDetails: '',
-            savingDetails: '',
-            photoBefore: null,
-            photoAfter: null,
-            lastSaved: null
-        };
-        
-        // Improvements list
         let improvements = [
             {
                 id: '1',
@@ -1252,7 +901,6 @@
                 costDetails: 'Biaya konsultan: Rp 3.000.000, Material: Rp 2.000.000',
                 saving: 15000000,
                 savingDetails: 'Efisiensi waktu 20% = Rp 10.000.000/bulan, Reduksi waste = Rp 5.000.000/bulan',
-                category: 'process',
                 proposerId: 'staff1',
                 proposerName: 'Staff Demo',
                 proposerRole: 'staff',
@@ -1272,7 +920,6 @@
                 costDetails: 'Training: Rp 1.500.000, Tools: Rp 500.000',
                 saving: 8000000,
                 savingDetails: 'Scrap turun 10% = Rp 8.000.000/bulan',
-                category: 'cost',
                 proposerId: 'staff1',
                 proposerName: 'Staff Demo',
                 proposerRole: 'staff',
@@ -1282,286 +929,35 @@
                 createdAt: new Date(Date.now() - 86400000).toISOString(),
                 photoBefore: null,
                 photoAfter: null
+            },
+            {
+                id: '3',
+                title: 'Program Safety Training',
+                problem: 'Tingkat kecelakaan kerja masih tinggi',
+                solution: 'Pelatihan K3 untuk seluruh karyawan',
+                cost: 3000000,
+                costDetails: 'Training: Rp 2.000.000, Sertifikasi: Rp 1.000.000',
+                saving: 12000000,
+                savingDetails: 'Reduksi biaya pengobatan: Rp 12.000.000/tahun',
+                proposerId: 'manager1',
+                proposerName: 'Manager Demo',
+                proposerRole: 'manager',
+                status: 'pending',
+                currentLevel: 2,
+                maxLevel: 2,
+                createdAt: new Date(Date.now() - 172800000).toISOString(),
+                photoBefore: null,
+                photoAfter: null
             }
         ];
 
-        // ==================== MONEY FORMAT FUNCTIONS ====================
-        function formatMoney(input) {
-            let value = input.value.replace(/\./g, '');
-            value = value.replace(/[^\d]/g, '');
-            
-            if (value) {
-                value = parseInt(value, 10).toString();
-                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            } else {
-                input.value = '';
-            }
-        }
-        
-        function formatMoneyOnBlur(input) {
-            let value = input.value.replace(/\./g, '');
-            value = value.replace(/[^\d]/g, '');
-            
-            if (value) {
-                value = parseInt(value, 10).toString();
-                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            }
-        }
-        
-        function getRawMoneyValue(formattedValue) {
-            if (!formattedValue) return 0;
-            return parseInt(formattedValue.replace(/\./g, '')) || 0;
-        }
-        
+        // ==================== MONEY FUNCTIONS ====================
         function formatRupiah(amount) {
             if (!amount && amount !== 0) return 'Rp 0';
-            return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.';
         }
-
-        // ==================== DRAFT FUNCTIONS ====================
-        
-        // Simpan draft ke localStorage
-        function saveDraft() {
-            // Ambil nilai dari form
-            currentDraft = {
-                title: document.getElementById('title').value,
-                problem: document.getElementById('problem').value,
-                solution: document.getElementById('solution').value,
-                cost: document.getElementById('cost').value,
-                saving: document.getElementById('saving').value,
-                costDetails: document.getElementById('costDetails').value,
-                savingDetails: document.getElementById('savingDetails').value,
-                photoBefore: photoBeforeData,
-                photoAfter: photoAfterData,
-                lastSaved: new Date().toISOString()
-            };
-            
-            // Simpan ke localStorage
-            localStorage.setItem('improvementDraft', JSON.stringify(currentDraft));
-            
-            // Update UI
-            document.getElementById('draftIndicator').classList.remove('hidden');
-            document.getElementById('lastSaved').innerHTML = 'Terakhir disimpan: ' + new Date().toLocaleTimeString('id-ID');
-            document.getElementById('lastSaved').classList.remove('hidden');
-            
-            // Tampilkan alert draft
-            document.getElementById('draftAlert').classList.remove('hidden');
-            
-            // Update status section
-            updateSectionStatus();
-            
-            alert('Draft berhasil disimpan!');
-        }
-        
-        // Load draft dari localStorage
-        function loadDraft() {
-            const savedDraft = localStorage.getItem('improvementDraft');
-            if (savedDraft) {
-                currentDraft = JSON.parse(savedDraft);
-                
-                // Isi form dengan draft
-                document.getElementById('title').value = currentDraft.title || '';
-                document.getElementById('problem').value = currentDraft.problem || '';
-                document.getElementById('solution').value = currentDraft.solution || '';
-                document.getElementById('cost').value = currentDraft.cost || '';
-                document.getElementById('saving').value = currentDraft.saving || '';
-                document.getElementById('costDetails').value = currentDraft.costDetails || '';
-                document.getElementById('savingDetails').value = currentDraft.savingDetails || '';
-                
-                // Load foto
-                if (currentDraft.photoBefore) {
-                    photoBeforeData = currentDraft.photoBefore;
-                    displayPhoto('before', currentDraft.photoBefore);
-                }
-                
-                if (currentDraft.photoAfter) {
-                    photoAfterData = currentDraft.photoAfter;
-                    displayPhoto('after', currentDraft.photoAfter);
-                }
-                
-                // Tampilkan form
-                showCreateForm();
-                
-                // Update UI
-                document.getElementById('draftIndicator').classList.remove('hidden');
-                if (currentDraft.lastSaved) {
-                    document.getElementById('lastSaved').innerHTML = 'Terakhir disimpan: ' + new Date(currentDraft.lastSaved).toLocaleTimeString('id-ID');
-                    document.getElementById('lastSaved').classList.remove('hidden');
-                }
-                
-                updateSectionStatus();
-            }
-        }
-        
-        // Hapus draft
-        function discardDraft() {
-            if (confirm('Hapus draft ini?')) {
-                localStorage.removeItem('improvementDraft');
-                currentDraft = {
-                    title: '', problem: '', solution: '',
-                    cost: '', saving: '', costDetails: '', savingDetails: '',
-                    photoBefore: null, photoAfter: null, lastSaved: null
-                };
-                document.getElementById('draftAlert').classList.add('hidden');
-                document.getElementById('draftIndicator').classList.add('hidden');
-                document.getElementById('lastSaved').classList.add('hidden');
-                clearForm();
-            }
-        }
-        
-        // Auto-save setiap 30 detik
-        function startAutoSave() {
-            if (autoSaveInterval) clearInterval(autoSaveInterval);
-            autoSaveInterval = setInterval(() => {
-                // Cek apakah form sedang ditampilkan
-                if (!document.getElementById('createForm').classList.contains('hidden')) {
-                    saveDraft();
-                }
-            }, 30000); // 30 detik
-        }
-        
-        // Update status section (lengkap/belum)
-        function updateSectionStatus() {
-            // Section 1
-            const title = document.getElementById('title').value;
-            const problem = document.getElementById('problem').value;
-            const solution = document.getElementById('solution').value;
-            
-            if (title && problem && solution) {
-                document.getElementById('section1Status').textContent = 'Lengkap';
-                document.getElementById('section1Status').classList.add('completed');
-            } else {
-                document.getElementById('section1Status').textContent = 'Belum Lengkap';
-                document.getElementById('section1Status').classList.remove('completed');
-            }
-            
-            // Section 2
-            const cost = document.getElementById('cost').value;
-            const saving = document.getElementById('saving').value;
-            const costDetails = document.getElementById('costDetails').value;
-            const savingDetails = document.getElementById('savingDetails').value;
-            
-            if (cost && saving && costDetails && savingDetails) {
-                document.getElementById('section2Status').textContent = 'Lengkap';
-                document.getElementById('section2Status').classList.add('completed');
-            } else {
-                document.getElementById('section2Status').textContent = 'Belum Lengkap';
-                document.getElementById('section2Status').classList.remove('completed');
-            }
-            
-            // Section 3
-            if (photoBeforeData && photoAfterData) {
-                document.getElementById('section3Status').textContent = 'Lengkap';
-                document.getElementById('section3Status').classList.add('completed');
-            } else {
-                document.getElementById('section3Status').textContent = 'Belum Lengkap';
-                document.getElementById('section3Status').classList.remove('completed');
-            }
-        }
-
-        // ==================== CAMERA & GALLERY FUNCTIONS ====================
-        
-        window.openCamera = function(type) {
-            if (type === 'before') {
-                document.getElementById('cameraBefore').click();
-            } else {
-                document.getElementById('cameraAfter').click();
-            }
-        };
-        
-        window.openGallery = function(type) {
-            if (type === 'before') {
-                document.getElementById('fileBefore').click();
-            } else {
-                document.getElementById('fileAfter').click();
-            }
-        };
-        
-        window.handleFileSelect = function(event, type) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    if (type === 'before') {
-                        photoBeforeData = e.target.result;
-                        displayPhoto('before', e.target.result);
-                    } else {
-                        photoAfterData = e.target.result;
-                        displayPhoto('after', e.target.result);
-                    }
-                    updateSectionStatus();
-                };
-                reader.readAsDataURL(file);
-            }
-        };
-        
-        function displayPhoto(type, dataUrl) {
-            const container = document.getElementById(type === 'before' ? 'previewBefore' : 'previewAfter');
-            
-            container.innerHTML = `
-                <div class="preview-item">
-                    <div class="preview-label">
-                        Foto ${type === 'before' ? 'Before' : 'After'}
-                        <div class="photo-actions">
-                            <button type="button" class="photo-action-btn" onclick="rotatePhoto('${type}')">🔄</button>
-                        </div>
-                    </div>
-                    <img src="${dataUrl}" alt="Preview">
-                    <button type="button" class="remove-image" onclick="removePhoto('${type}')">Hapus Foto</button>
-                </div>
-            `;
-        }
-        
-        window.removePhoto = function(type) {
-            if (type === 'before') {
-                photoBeforeData = null;
-                document.getElementById('previewBefore').innerHTML = '';
-                document.getElementById('fileBefore').value = '';
-                document.getElementById('cameraBefore').value = '';
-            } else {
-                photoAfterData = null;
-                document.getElementById('previewAfter').innerHTML = '';
-                document.getElementById('fileAfter').value = '';
-                document.getElementById('cameraAfter').value = '';
-            }
-            updateSectionStatus();
-        };
-        
-        window.rotatePhoto = function(type) {
-            // Fungsi untuk rotate foto (bisa ditambahkan nanti)
-            alert('Fitur rotate foto akan segera hadir!');
-        };
-
-        // ==================== FORM FUNCTIONS ====================
-        
-        window.showCreateForm = function() {
-            document.getElementById('createForm').classList.remove('hidden');
-            startAutoSave();
-            
-            // Cek apakah ada draft
-            if (localStorage.getItem('improvementDraft')) {
-                document.getElementById('draftAlert').classList.remove('hidden');
-            }
-        };
-        
-        window.hideCreateForm = function() {
-            document.getElementById('createForm').classList.add('hidden');
-            if (autoSaveInterval) {
-                clearInterval(autoSaveInterval);
-            }
-        };
-        
-        window.clearForm = function() {
-            if (confirm('Bersihkan semua field?')) {
-                document.getElementById('improvementForm').reset();
-                removePhoto('before');
-                removePhoto('after');
-                updateSectionStatus();
-            }
-        };
 
         // ==================== LOGIN FUNCTIONS ====================
-        
         window.fillLogin = function(email, password) {
             document.getElementById('email').value = email;
             document.getElementById('password').value = password;
@@ -1596,11 +992,24 @@
                 return;
             }
 
+            // Update UI
             document.getElementById('loginSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
             
             document.getElementById('userName').textContent = currentUser.name;
-            document.getElementById('userRole').textContent = currentUser.role;
+            const userRoleEl = document.getElementById('userRole');
+            userRoleEl.textContent = currentUser.role;
+            userRoleEl.className = 'user-role ' + currentUser.role;
+            
+            // Hide create button for director
+            if (currentUser.role === 'director') {
+                document.getElementById('createButtonContainer').classList.add('hidden');
+                document.getElementById('directorStats').classList.remove('hidden');
+                updateDirectorStats();
+            } else {
+                document.getElementById('createButtonContainer').classList.remove('hidden');
+                document.getElementById('directorStats').classList.add('hidden');
+            }
             
             loadData('pending');
         });
@@ -1609,80 +1018,22 @@
             currentUser = null;
             document.getElementById('loginSection').classList.remove('hidden');
             document.getElementById('dashboardSection').classList.add('hidden');
-            if (autoSaveInterval) {
-                clearInterval(autoSaveInterval);
-            }
         };
 
-        // ==================== CREATE IMPROVEMENT ====================
-        
-        document.getElementById('improvementForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // ==================== DIRECTOR STATS ====================
+        function updateDirectorStats() {
+            const total = improvements.length;
+            const pending = improvements.filter(imp => imp.status === 'pending').length;
+            const approved = improvements.filter(imp => imp.status === 'approved').length;
+            const totalSaving = improvements.reduce((sum, imp) => sum + imp.saving, 0);
             
-            // Validasi semua field wajib
-            const title = document.getElementById('title').value;
-            const problem = document.getElementById('problem').value;
-            const solution = document.getElementById('solution').value;
-            
-            if (!title || !problem || !solution) {
-                alert('Bagian Identifikasi Masalah harus diisi lengkap!');
-                return;
-            }
-            
-            const costDisplay = document.getElementById('cost').value;
-            const savingDisplay = document.getElementById('saving').value;
-            const costDetails = document.getElementById('costDetails').value;
-            const savingDetails = document.getElementById('savingDetails').value;
-            
-            if (!costDisplay || !savingDisplay || !costDetails || !savingDetails) {
-                alert('Bagian Biaya & Cost Saving harus diisi lengkap!');
-                return;
-            }
-            
-            if (!photoBeforeData || !photoAfterData) {
-                alert('Foto before dan after harus diupload!');
-                return;
-            }
+            document.getElementById('totalImprovements').textContent = total;
+            document.getElementById('pendingImprovements').textContent = pending;
+            document.getElementById('approvedImprovements').textContent = approved;
+            document.getElementById('totalCostSaving').textContent = formatRupiah(totalSaving);
+        }
 
-            const cost = getRawMoneyValue(costDisplay);
-            const saving = getRawMoneyValue(savingDisplay);
-
-            const newImprovement = {
-                id: Date.now().toString(),
-                title: title,
-                problem: problem,
-                solution: solution,
-                cost: cost,
-                costDetails: costDetails,
-                saving: saving,
-                savingDetails: savingDetails,
-                category: 'process',
-                proposerId: currentUser.id,
-                proposerName: currentUser.name,
-                proposerRole: currentUser.role,
-                status: 'pending',
-                currentLevel: 1,
-                maxLevel: 2,
-                createdAt: new Date().toISOString(),
-                photoBefore: photoBeforeData,
-                photoAfter: photoAfterData
-            };
-
-            improvements.unshift(newImprovement);
-            
-            // Hapus draft setelah submit
-            localStorage.removeItem('improvementDraft');
-            
-            alert(`Improvement berhasil disubmit!\n\nBiaya: ${formatRupiah(cost)}\nCost Saving: ${formatRupiah(saving)}`);
-            
-            hideCreateForm();
-            clearForm();
-            
-            loadData('my');
-        });
-
-        // ==================== LOAD & DISPLAY DATA ====================
-        
+        // ==================== LOAD DATA ====================
         window.loadData = function(type) {
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -1693,10 +1044,6 @@
             
             if (type === 'my') {
                 filtered = improvements.filter(imp => imp.proposerId === currentUser.id);
-            } else if (type === 'draft') {
-                // Tampilkan draft dari localStorage
-                displayDrafts();
-                return;
             } else if (type === 'pending') {
                 if (currentUser.role === 'manager') {
                     filtered = improvements.filter(imp => imp.status === 'pending' && imp.currentLevel === 1);
@@ -1711,31 +1058,6 @@
 
             displayImprovements(filtered);
         };
-        
-        function displayDrafts() {
-            const container = document.getElementById('improvementsList');
-            const savedDraft = localStorage.getItem('improvementDraft');
-            
-            if (!savedDraft) {
-                container.innerHTML = '<div class="empty-state">Tidak ada draft tersimpan</div>';
-                return;
-            }
-            
-            const draft = JSON.parse(savedDraft);
-            
-            container.innerHTML = `
-                <div class="draft-item">
-                    <div class="draft-info">
-                        <h5>${draft.title || 'Judul belum diisi'}</h5>
-                        <p>Terakhir diedit: ${draft.lastSaved ? new Date(draft.lastSaved).toLocaleString('id-ID') : 'Belum pernah'}</p>
-                    </div>
-                    <div class="draft-item-actions">
-                        <button onclick="loadDraft()" class="btn btn-warning btn-small">Lanjutkan</button>
-                        <button onclick="discardDraft()" class="btn btn-danger btn-small">Hapus</button>
-                    </div>
-                </div>
-            `;
-        }
 
         function displayImprovements(items) {
             const container = document.getElementById('improvementsList');
@@ -1746,70 +1068,26 @@
             }
 
             container.innerHTML = items.map(item => {
-                const hasPhotos = item.photoBefore || item.photoAfter;
-                
                 return `
                 <div class="improvement-card">
                     <div class="card-header">
                         <div>
                             <div class="card-title">${item.title}</div>
-                            <p class="text-small">${item.problem.substring(0, 80)}${item.problem.length > 80 ? '...' : ''}</p>
+                            <p style="color: #666; font-size: 0.8rem;">${item.problem.substring(0, 80)}...</p>
                         </div>
                         <span class="status-badge status-${item.status}">${item.status}</span>
                     </div>
                     
-                    ${hasPhotos ? `
-                        <div class="photo-gallery">
-                            ${item.photoBefore ? `
-                                <div class="photo-item">
-                                    <div class="photo-label">Before</div>
-                                    <img src="${item.photoBefore}" alt="Before" onclick="openDetail('${item.id}')">
-                                </div>
-                            ` : ''}
-                            ${item.photoAfter ? `
-                                <div class="photo-item">
-                                    <div class="photo-label">After</div>
-                                    <img src="${item.photoAfter}" alt="After" onclick="openDetail('${item.id}')">
-                                </div>
-                            ` : ''}
-                        </div>
-                    ` : ''}
-                    
-                    <div class="cost-info">
-                        <div class="cost-row">
-                            <span class="cost-label">Biaya:</span>
-                            <span class="cost-value">${formatRupiah(item.cost)}</span>
-                        </div>
-                        <div class="cost-row">
-                            <span class="cost-label">Cost Saving:</span>
-                            <span class="cost-value">${formatRupiah(item.saving)}</span>
-                        </div>
+                    <div style="margin: 10px 0; font-size: 0.85rem;">
+                        <div>💰 Biaya: ${formatRupiah(item.cost)}</div>
+                        <div>💵 Cost Saving: ${formatRupiah(item.saving)}</div>
                     </div>
                     
-                    <div class="card-meta">
-                        <div class="meta-item">
-                            <strong>Kategori</strong>
-                            ${item.category}
-                        </div>
-                        <div class="meta-item">
-                            <strong>Pembuat</strong>
-                            ${item.proposerName}
-                        </div>
-                        <div class="meta-item">
-                            <strong>Tanggal</strong>
-                            ${new Date(item.createdAt).toLocaleDateString('id-ID')}
-                        </div>
-                        <div class="meta-item">
-                            <strong>Level</strong>
-                            ${item.currentLevel}/${item.maxLevel}
-                        </div>
-                    </div>
-
-                    <div class="flex">
+                    <div style="display: flex; gap: 8px; margin-top: 10px;">
                         ${canApprove(item) ? `
-                            <button onclick="openApprovalModal('${item.id}')" class="btn btn-primary btn-small" style="flex: 1;">Review</button>
+                            <button onclick="alert('Fitur approval dalam pengembangan')" class="btn btn-primary btn-small" style="flex: 1;">Review</button>
                         ` : ''}
-                        <button onclick="openDetail('${item.id}')" class="btn btn-secondary btn-small" style="flex: 1;">Detail</button>
+                        <button onclick="alert('Detail: ${item.title}')" class="btn btn-secondary btn-small" style="flex: 1;">Detail</button>
                     </div>
                 </div>
             `}).join('');
@@ -1822,135 +1100,17 @@
             return false;
         }
 
-        // ==================== DETAIL MODAL ====================
-        
-        window.openDetail = function(id) {
-            const item = improvements.find(i => i.id === id);
-            
-            document.getElementById('detailInfo').innerHTML = `
-                <h4 style="margin-bottom: 10px;">${item.title}</h4>
-                <p><strong>Permasalahan:</strong><br>${item.problem}</p>
-                <p><strong>Penanggulangan:</strong><br>${item.solution}</p>
-            `;
-            
-            document.getElementById('detailPhotos').innerHTML = `
-                ${item.photoBefore ? `
-                    <div class="photo-item">
-                        <div class="photo-label">Foto Before</div>
-                        <img src="${item.photoBefore}" alt="Before">
-                    </div>
-                ` : ''}
-                ${item.photoAfter ? `
-                    <div class="photo-item">
-                        <div class="photo-label">Foto After</div>
-                        <img src="${item.photoAfter}" alt="After">
-                    </div>
-                ` : ''}
-            `;
-            
-            document.getElementById('detailCost').innerHTML = `
-                <h4 style="margin-bottom: 10px;">Rincian Biaya</h4>
-                <div class="cost-row">
-                    <span class="cost-label">Biaya:</span>
-                    <span class="cost-value">${formatRupiah(item.cost)}</span>
-                </div>
-                <div class="cost-row">
-                    <span class="cost-label">Rincian:</span>
-                    <span>${item.costDetails}</span>
-                </div>
-                <div class="cost-row">
-                    <span class="cost-label">Cost Saving:</span>
-                    <span class="cost-value">${formatRupiah(item.saving)}</span>
-                </div>
-                <div class="cost-row">
-                    <span class="cost-label">Rincian:</span>
-                    <span>${item.savingDetails}</span>
-                </div>
-            `;
-            
-            document.getElementById('detailModal').classList.remove('hidden');
-        };
-
-        window.closeDetailModal = function() {
-            document.getElementById('detailModal').classList.add('hidden');
-        };
-
-        // ==================== APPROVAL MODAL ====================
-        
-        window.openApprovalModal = function(id) {
-            currentImprovementId = id;
-            const item = improvements.find(i => i.id === id);
-            
-            document.getElementById('modalInfo').innerHTML = `
-                <p><strong>Judul:</strong> ${item.title}</p>
-                <p><strong>Biaya:</strong> ${formatRupiah(item.cost)}</p>
-                <p><strong>Cost Saving:</strong> ${formatRupiah(item.saving)}</p>
-                <p><strong>Level:</strong> ${item.currentLevel}/${item.maxLevel}</p>
-            `;
-            
-            document.getElementById('modalPhotos').innerHTML = `
-                ${item.photoBefore ? `
-                    <div class="photo-item">
-                        <div class="photo-label">Before</div>
-                        <img src="${item.photoBefore}" alt="Before">
-                    </div>
-                ` : ''}
-                ${item.photoAfter ? `
-                    <div class="photo-item">
-                        <div class="photo-label">After</div>
-                        <img src="${item.photoAfter}" alt="After">
-                    </div>
-                ` : ''}
-            `;
-            
-            document.getElementById('approvalModal').classList.remove('hidden');
-        };
-
-        window.closeModal = function() {
-            document.getElementById('approvalModal').classList.add('hidden');
-            document.getElementById('approvalComments').value = '';
-        };
-
-        window.submitApproval = function() {
-            const action = document.getElementById('approvalAction').value;
-            const comments = document.getElementById('approvalComments').value;
-            
-            const item = improvements.find(i => i.id === currentImprovementId);
-            
-            if (action === 'rejected') {
-                item.status = 'rejected';
-            } else {
-                if (item.currentLevel >= item.maxLevel) {
-                    item.status = 'approved';
-                } else {
-                    item.currentLevel++;
-                }
+        // ==================== CREATE FORM ====================
+        window.showCreateForm = function() {
+            if (currentUser.role === 'director') {
+                alert('Director tidak dapat membuat improvement!');
+                return;
             }
-
-            alert(`Improvement berhasil di-${action === 'approved' ? 'approve' : 'reject'}!`);
-            closeModal();
-            
-            const activeTab = document.querySelector('.tab.active').id.replace('Tab', '');
-            loadData(activeTab);
+            alert('Form create improvement akan muncul di sini');
         };
 
-        // ==================== EVENT LISTENERS ====================
-        
-        // Update status section setiap kali ada input
-        document.getElementById('title').addEventListener('input', updateSectionStatus);
-        document.getElementById('problem').addEventListener('input', updateSectionStatus);
-        document.getElementById('solution').addEventListener('input', updateSectionStatus);
-        document.getElementById('cost').addEventListener('input', updateSectionStatus);
-        document.getElementById('saving').addEventListener('input', updateSectionStatus);
-        document.getElementById('costDetails').addEventListener('input', updateSectionStatus);
-        document.getElementById('savingDetails').addEventListener('input', updateSectionStatus);
-        
-        // Cek draft saat halaman dimuat
-        window.addEventListener('load', function() {
-            if (localStorage.getItem('improvementDraft')) {
-                document.getElementById('draftAlert').classList.remove('hidden');
-            }
-        });
+        // Manual book tetap visible
+        // Footer tetap di bawah
     </script>
 </body>
 </html>
